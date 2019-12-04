@@ -5,6 +5,11 @@
  */
 package assistantplanning;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 /**
  *
  * @author MarionM
@@ -17,7 +22,22 @@ public class AssistantPlanning
 	 */
 	public static void main(String[] args)
 	{
-		// TODO code application logic here
+		try
+		 
+		{
+		 
+		Class.forName("com.mysql.jdbc.Driver");
+		 
+		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:81/phone" ,"root",""); //phone et le nom de BD 
+		 
+		Statement statement = connection.createStatement();
+		 
+		System.out.println("Connection Established");
+		 
+		 
+		}catch(SQLException | ClassNotFoundException e){
+		    System.err.println(e);
+		}
 	}
 
 }
