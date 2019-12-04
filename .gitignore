@@ -1,3 +1,7 @@
 /AssistantPlanning/nbproject/
 /AssistantPlanning/build.xml
 /AssistantPlanning/manifest.mf
+/bin/
+.project
+.classpath
+.settings/
