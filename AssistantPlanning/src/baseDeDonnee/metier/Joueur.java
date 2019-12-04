@@ -1,6 +1,6 @@
 package baseDeDonnee.metier;
 
-public class Joueur
+public class Joueur extends Personne
 {
 
 }
