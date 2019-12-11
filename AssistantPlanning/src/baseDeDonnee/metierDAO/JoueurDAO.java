@@ -33,10 +33,17 @@ public class JoueurDAO
 		return liste;
 	}
 
-	public Joueur getPlayerByID(int ID)
+	public Joueur getPlayerByID(int ID) throws SQLException
 	{
+		String sql = "select * from Joueur where id = " + ID;
+		Statement smt = connection.createStatement();
+		ResultSet rs = smt.executeQuery(sql);
 		Joueur j = null;
-		// TODO acces BD
+		if (rs.next())
+		{
+			j = new Joueur(rs.getInt("ID"), rs.getString("Nom"), rs.getString("Prenom"), rs.getInt("Nationalite"));
+		}
+
 		return j;
 	}
 }

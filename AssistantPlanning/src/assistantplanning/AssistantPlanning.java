@@ -39,7 +39,7 @@ public class AssistantPlanning
 			Connection con = DriverManager.getConnection(conString, nomConnexion, motDePasse);
 			
 			JoueurDAO jdao = new JoueurDAO(con);
-			System.out.println(jdao.getAllPlayers());
+			System.out.println(jdao.getPlayerByID(1));
 
 		} catch (Exception e)
 		{
