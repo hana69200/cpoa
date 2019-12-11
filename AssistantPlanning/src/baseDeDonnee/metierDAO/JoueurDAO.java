@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import baseDeDonnee.metier.Joueur;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class JoueurDAO
 {
@@ -16,10 +19,17 @@ public class JoueurDAO
 		this.connection = connection;
 	}
 
-	public List<Joueur> getAllPlayers()
+	public List<Joueur> getAllPlayers() throws SQLException
 	{
 		List<Joueur> liste = new ArrayList<Joueur>();
-		// TODO acces BD
+
+		String sql = "select * from Marins";
+		Statement smt = connection.createStatement();
+		ResultSet rs = smt.executeQuery(sql);
+		while (rs.next())
+		{
+			System.out.println(rs.getString("nom"));
+		}
 		return liste;
 	}
 
