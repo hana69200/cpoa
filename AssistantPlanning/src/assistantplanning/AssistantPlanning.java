@@ -12,6 +12,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import baseDeDonnee.metierDAO.JoueurDAO;
+
 /**
  *
  * @author MarionM
@@ -35,6 +37,9 @@ public class AssistantPlanning
 			String motDePasse = "270858";
 
 			Connection con = DriverManager.getConnection(conString, nomConnexion, motDePasse);
+			
+			JoueurDAO jdao = new JoueurDAO(con);
+			System.out.println(jdao.getAllPlayers());
 
 		} catch (Exception e)
 		{

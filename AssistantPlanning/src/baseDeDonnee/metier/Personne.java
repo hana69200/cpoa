@@ -9,34 +9,38 @@ package baseDeDonnee.metier;
  *
  * @author MarionM
  */
-public class Personne {
-    private String nom;
-    private String prenom;
-    private int nationalite;
+public class Personne
+{
+	protected int id;
+	protected String nom;
+	protected String prenom;
+	protected int nationalite;
 
-    public String getNom() {
-        return nom;
-    }
+	public Personne(int id, String nom, String prenom, int nationalite)
+	{
+		this.id = id;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.nationalite = nationalite;
+	}
 
-    public int getNationalite() {
-        return nationalite;
-    }
+	public int getId()
+	{
+		return id;
+	}
+	
+	public String getNom()
+	{
+		return nom;
+	}
 
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public void setNationalite(int nationalite) {
-        this.nationalite = nationalite;
-    }
-    
-    
+	public String getPrenom()
+	{
+		return prenom;
+	}
+	
+	public int getNationalite()
+	{
+		return nationalite;
+	}
 }

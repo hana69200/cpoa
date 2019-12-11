@@ -23,19 +23,19 @@ public class JoueurDAO
 	{
 		List<Joueur> liste = new ArrayList<Joueur>();
 
-		String sql = "select * from Marins";
+		String sql = "select * from Joueur";
 		Statement smt = connection.createStatement();
 		ResultSet rs = smt.executeQuery(sql);
 		while (rs.next())
 		{
-			System.out.println(rs.getString("nom"));
+			liste.add(new Joueur(rs.getInt("ID"), rs.getString("Nom"), rs.getString("Prenom"), rs.getInt("Nationalite")));
 		}
 		return liste;
 	}
 
 	public Joueur getPlayerByID(int ID)
 	{
-		Joueur j = new Joueur();
+		Joueur j = null;
 		// TODO acces BD
 		return j;
 	}

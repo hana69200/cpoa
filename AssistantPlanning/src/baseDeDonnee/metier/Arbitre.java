@@ -9,6 +9,11 @@ package baseDeDonnee.metier;
  *
  * @author MarionM
  */
-public class Arbitre extends Personne{
-    
+public class Arbitre extends Personne
+{
+
+	public Arbitre(int id, String nom, String prenom, int nationalite)
+	{
+		super(id, nom, prenom, nationalite);
+	}
 }
