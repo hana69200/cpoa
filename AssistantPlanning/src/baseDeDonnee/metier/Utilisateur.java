@@ -12,4 +12,15 @@ public class Utilisateur
 		this.joueur = joueur;
 		this.autorisations = autorisations;
 	}
+
+	public Joueur getJoueur()
+	{
+		return joueur;
+	}
+
+	public Hashtable<String, Boolean> getAutorisations()
+	{
+		return autorisations;
+	}
+	
 }

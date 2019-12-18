@@ -94,5 +94,4 @@ class TestUserDAO
 		assertEquals(ta, UDAO.getAutorisation("A1"));
 		assertEquals(tj, UDAO.getAutorisation("J1"));
 	}
-
 }
