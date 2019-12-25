@@ -10,6 +10,12 @@ public class Score
 		this.s1 = s1;
 		this.s2 = s2;
 	}
+	
+	public Score(String score)
+	{
+		this.s1 = Integer.parseInt(score.substring(0, 2));
+		this.s2 = Integer.parseInt(score.substring(5, 7));
+	}
 
 	public int getS1()
 	{

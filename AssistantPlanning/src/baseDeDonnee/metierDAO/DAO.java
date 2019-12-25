@@ -15,6 +15,7 @@ public class DAO
 
 	protected Statement getStm() throws SQLException
 	{
+		//TODO getRs (return le result set directement)
 		return connection.createStatement();
 	}
 
