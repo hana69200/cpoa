@@ -16,6 +16,10 @@ public class JoueurDAO extends DAO
 		super(connection);
 	}
 
+	/**
+	 * @return la liste de tout les joueurs
+	 * @throws SQLException
+	 */
 	public List<Joueur> getAllPlayers() throws SQLException
 	{
 		List<Joueur> liste = new ArrayList<Joueur>();
@@ -29,6 +33,11 @@ public class JoueurDAO extends DAO
 		return liste;
 	}
 
+	/**
+	 * @param ID : ID du joueur recherché
+	 * @return le Joueur s'il existe, null sinon
+	 * @throws SQLException
+	 */
 	public Joueur getPlayerByID(int ID) throws SQLException
 	{
 		String sql = "select * from Joueur where id = " + ID;

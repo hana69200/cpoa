@@ -20,12 +20,23 @@ public class MatchDAO extends DAO
 		super(connection);
 	}
 
+	/**
+	 * parse un objet Calendar en une chaine de caractère utilisable dans une requete sql
+	 * @param date : l'objet à parser
+	 * @return la chaine de caratere
+	 */
 	private String getDay(Calendar date)
 	{
 		return Integer.toString(date.get(Calendar.YEAR)) + "-" + Integer.toString(date.get(Calendar.MONTH) + 1) + "-"
 				+ Integer.toString(date.get(Calendar.DAY_OF_MONTH));
 	}
 
+	/**
+	 * renvoie une liste des matchs d'un jour
+	 * @param date : le jour souhaité
+	 * @return List des matchs du jour
+	 * @throws SQLException
+	 */
 	public List<Match> getMatchsByDay(Calendar date) throws SQLException
 	{
 		List<Match> matchs = new ArrayList<Match>();
@@ -49,6 +60,11 @@ public class MatchDAO extends DAO
 		return matchs;
 	}
 
+	/**
+	 * @param date : le jour et l'heure souhaité
+	 * @return true si le cours est libre a l'heure souhaiter (avec la marge definis dans la classe Match)
+	 * @throws SQLException
+	 */
 	public boolean isCoursDispo(Calendar date) throws SQLException
 	{
 		String day = getDay(date);

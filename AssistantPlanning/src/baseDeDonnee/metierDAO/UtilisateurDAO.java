@@ -14,6 +14,12 @@ public class UtilisateurDAO extends DAO
 		super(connection);
 	}
 
+	/**
+	 * verifie si un utilisateur existe
+	 * @param nomUser : le nom à tester
+	 * @return true s'il existe false sinon
+	 * @throws SQLException
+	 */
 	public boolean isUserOK(String nomUser) throws SQLException
 	{
 		String sql = "select * from Utilisateur where Nom = '" + nomUser + "'";
@@ -21,6 +27,13 @@ public class UtilisateurDAO extends DAO
 		return rs.next();
 	}
 
+	/**
+	 * verifie si le mot de passe est correct
+	 * @param nomUser : nom de l'utilisateur
+	 * @param password : le mot de passe testé
+	 * @return true si l'utilisateur existe et que le mot de passe est correct, false sinon
+	 * @throws SQLException
+	 */
 	public boolean isPasswordOK(String nomUser, String password) throws SQLException
 	{
 		String sql = "select * from Utilisateur where Nom = '" + nomUser + "'";
@@ -31,6 +44,12 @@ public class UtilisateurDAO extends DAO
 		return false;
 	}
 
+	/**
+	 * Renvoie le joueur associer au nom d'utilisateur
+	 * @param nomUser : nom d'utilisateur
+	 * @return le Joueur s'il existe, null sinon
+	 * @throws SQLException
+	 */
 	public Joueur getJoueur(String nomUser) throws SQLException
 	{
 		String sql = "select * from Utilisateur where Nom = '" + nomUser + "'";
@@ -43,6 +62,12 @@ public class UtilisateurDAO extends DAO
 		return null;
 	}
 
+	/**
+	 * renvoie les autorisation associer à un utilisateur
+	 * @param nomUser nom d'utilisateur
+	 * @return table des autorisation, null si le l'utilisateur n'existe pas
+	 * @throws SQLException
+	 */
 	public Hashtable<String, Boolean> getAutorisation(String nomUser) throws SQLException
 	{
 		Hashtable<String, Boolean> table = new Hashtable<String, Boolean>();

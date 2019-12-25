@@ -5,6 +5,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * Classe mère pour les classes accedant à la base de données
+ *
+ */
 public class DAO
 {
 	private Connection connection;

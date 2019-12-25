@@ -17,6 +17,10 @@ public class ArbitreDAO extends DAO
 		super(connection);
 	}
 
+	/**
+	 * @return List de tout les arbitres
+	 * @throws SQLException
+	 */
 	public List<Arbitre> getAllArbitritors() throws SQLException
 	{
 		List<Arbitre> liste = new ArrayList<Arbitre>();
@@ -30,6 +34,11 @@ public class ArbitreDAO extends DAO
 		return liste;
 	}
 
+	/**
+	 * @param ID : ID de l'arbitre recherché
+	 * @return arbitre si l'ID existe dans la base de données, null sinon
+	 * @throws SQLException
+	 */
 	public Arbitre getArbitritorByID(int ID) throws SQLException
 	{
 		String sql = "select * from Arbitre where id = " + ID;
