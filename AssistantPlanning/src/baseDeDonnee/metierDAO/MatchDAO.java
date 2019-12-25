@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import baseDeDonnee.metier.Joueur;
 import baseDeDonnee.metier.Match;
@@ -19,14 +20,15 @@ public class MatchDAO extends DAO
 		super(connection);
 	}
 
-	public ArrayList<Match> getMatchsByDay(Calendar date) throws SQLException
+	public List<Match> getMatchsByDay(Calendar date) throws SQLException
 	{
-		ArrayList<Match> matchs = new ArrayList<Match>();
+		List<Match> matchs = new ArrayList<Match>();
 
-		String day = Integer.toString(date.get(Calendar.YEAR)) + Integer.toString(date.get(Calendar.MONTH))
-				+ Integer.toString(date.get(Calendar.DAY_OF_MONTH));
+		String day = Integer.toString(date.get(Calendar.YEAR)) + "-" + Integer.toString(date.get(Calendar.MONTH) + 1)
+				+ "-" + Integer.toString(date.get(Calendar.DAY_OF_MONTH));
 		String sql = "select * from MatchTournois where DateDebut between '" + day + " 00:00:00.000' and '" + day
 				+ " 23:59:59.999'";
+		System.out.println(sql);
 		Statement smt = getStm();
 		ResultSet rs = smt.executeQuery(sql);
 
@@ -62,5 +64,13 @@ public class MatchDAO extends DAO
 		return false;
 	}
 
-	// WARNING utilisation de sql.date / calendrier -> util.date
+	public void createMatch(Match match)
+	{
+		// TODO createMatch
+	}
+
+	public void deleteMatch(Match match)
+	{
+		// TODO deleteMatch
+	}
 }

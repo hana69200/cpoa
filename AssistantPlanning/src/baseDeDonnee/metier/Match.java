@@ -45,5 +45,57 @@ public class Match extends Appointment
 	{
 		return score;
 	}
+
+	@Override
+	public int hashCode()
+	{
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((date == null) ? 0 : date.hashCode());
+		result = prime * result + equipeArbitre;
+		result = prime * result + ((participant1 == null) ? 0 : participant1.hashCode());
+		result = prime * result + ((participant2 == null) ? 0 : participant2.hashCode());
+		result = prime * result + ((score == null) ? 0 : score.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj)
+	{
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Match other = (Match) obj;
+		if (date == null)
+		{
+			if (other.date != null)
+				return false;
+		} else if (!date.equals(other.date))
+			return false;
+		if (equipeArbitre != other.equipeArbitre)
+			return false;
+		if (participant1 == null)
+		{
+			if (other.participant1 != null)
+				return false;
+		} else if (!participant1.equals(other.participant1))
+			return false;
+		if (participant2 == null)
+		{
+			if (other.participant2 != null)
+				return false;
+		} else if (!participant2.equals(other.participant2))
+			return false;
+		if (score == null)
+		{
+			if (other.score != null)
+				return false;
+		} else if (!score.equals(other.score))
+			return false;
+		return true;
+	}
 	
 }
