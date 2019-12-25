@@ -8,7 +8,6 @@ import java.util.List;
 import baseDeDonnee.metier.Joueur;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class JoueurDAO extends DAO
 {
@@ -22,8 +21,7 @@ public class JoueurDAO extends DAO
 		List<Joueur> liste = new ArrayList<Joueur>();
 
 		String sql = "select * from Joueur";
-		Statement smt = getStm();
-		ResultSet rs = smt.executeQuery(sql);
+		ResultSet rs = getRs(sql);
 		while (rs.next())
 		{
 			liste.add(new Joueur(rs.getInt("ID"), rs.getString("Nom"), rs.getString("Prenom"), rs.getInt("Nationalite")));
@@ -34,8 +32,7 @@ public class JoueurDAO extends DAO
 	public Joueur getPlayerByID(int ID) throws SQLException
 	{
 		String sql = "select * from Joueur where id = " + ID;
-		Statement smt = getStm();
-		ResultSet rs = smt.executeQuery(sql);
+		ResultSet rs = getRs(sql);
 		Joueur j = null;
 		if (rs.next())
 		{

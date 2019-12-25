@@ -3,7 +3,6 @@ package baseDeDonnee.metierDAO;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -28,9 +27,7 @@ public class MatchDAO extends DAO
 				+ "-" + Integer.toString(date.get(Calendar.DAY_OF_MONTH));
 		String sql = "select * from MatchTournois where DateDebut between '" + day + " 00:00:00.000' and '" + day
 				+ " 23:59:59.999'";
-		System.out.println(sql);
-		Statement smt = getStm();
-		ResultSet rs = smt.executeQuery(sql);
+		ResultSet rs = getRs(sql);
 
 		JoueurDAO jDAO = new JoueurDAO(this.getConnection());
 		Calendar cal = new GregorianCalendar();

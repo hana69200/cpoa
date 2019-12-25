@@ -1,6 +1,7 @@
 package baseDeDonnee.metierDAO;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -13,10 +14,10 @@ public class DAO
 		this.connection = connection;
 	}
 
-	protected Statement getStm() throws SQLException
+	protected ResultSet getRs(String sql) throws SQLException
 	{
-		//TODO getRs (return le result set directement)
-		return connection.createStatement();
+		Statement smt = connection.createStatement();
+		return smt.executeQuery(sql);
 	}
 
 	public Connection getConnection()

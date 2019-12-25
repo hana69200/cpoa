@@ -3,7 +3,6 @@ package baseDeDonnee.metierDAO;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Hashtable;
 
 import baseDeDonnee.metier.Joueur;
@@ -18,16 +17,14 @@ public class UtilisateurDAO extends DAO
 	public boolean isUserOK(String nomUser) throws SQLException
 	{
 		String sql = "select * from Utilisateur where Nom = '" + nomUser + "'";
-		Statement smt = getStm();
-		ResultSet rs = smt.executeQuery(sql);
+		ResultSet rs = getRs(sql);
 		return rs.next();
 	}
 
 	public boolean isPasswordOK(String nomUser, String password) throws SQLException
 	{
 		String sql = "select * from Utilisateur where Nom = '" + nomUser + "'";
-		Statement smt = getStm();
-		ResultSet rs = smt.executeQuery(sql);
+		ResultSet rs = getRs(sql);
 		if (rs.next())
 			if (password.equals(rs.getString("MotDePasse")))
 				return true;
@@ -37,8 +34,7 @@ public class UtilisateurDAO extends DAO
 	public Joueur getJoueur(String nomUser) throws SQLException
 	{
 		String sql = "select * from Utilisateur where Nom = '" + nomUser + "'";
-		Statement smt = getStm();
-		ResultSet rs = smt.executeQuery(sql);
+		ResultSet rs = getRs(sql);
 		if (rs.next())
 		{
 			JoueurDAO jDAO = new JoueurDAO(this.getConnection());
@@ -52,13 +48,11 @@ public class UtilisateurDAO extends DAO
 		Hashtable<String, Boolean> table = new Hashtable<String, Boolean>();
 
 		String sql = "select * from Utilisateur where Nom = '" + nomUser + "'";
-		Statement smt = getStm();
-		ResultSet rs = smt.executeQuery(sql);
+		ResultSet rs = getRs(sql);
 		if (rs.next())
 		{
 			sql = "select * from Autorisation where Type = " + rs.getInt("TypeAutorisation");
-			smt = getStm();
-			rs = smt.executeQuery(sql);
+			rs = getRs(sql);
 			if (rs.next())
 			{
 				table.put("ReservationEntr", rs.getBoolean("ReservationEntr"));
