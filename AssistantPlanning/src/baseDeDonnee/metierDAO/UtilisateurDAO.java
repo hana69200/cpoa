@@ -8,19 +8,17 @@ import java.util.Hashtable;
 
 import baseDeDonnee.metier.Joueur;
 
-public class UtilisateurDAO
+public class UtilisateurDAO extends DAO
 {
-	private Connection connection;
-
 	public UtilisateurDAO(Connection connection)
 	{
-		this.connection = connection;
+		super(connection);
 	}
 
 	public boolean isUserOK(String nomUser) throws SQLException
 	{
 		String sql = "select * from Utilisateur where Nom = '" + nomUser + "'";
-		Statement smt = connection.createStatement();
+		Statement smt = getStm();
 		ResultSet rs = smt.executeQuery(sql);
 		return rs.next();
 	}
@@ -28,7 +26,7 @@ public class UtilisateurDAO
 	public boolean isPasswordOK(String nomUser, String password) throws SQLException
 	{
 		String sql = "select * from Utilisateur where Nom = '" + nomUser + "'";
-		Statement smt = connection.createStatement();
+		Statement smt = getStm();
 		ResultSet rs = smt.executeQuery(sql);
 		if (rs.next())
 			if (password.equals(rs.getString("MotDePasse")))
@@ -39,11 +37,11 @@ public class UtilisateurDAO
 	public Joueur getJoueur(String nomUser) throws SQLException
 	{
 		String sql = "select * from Utilisateur where Nom = '" + nomUser + "'";
-		Statement smt = connection.createStatement();
+		Statement smt = getStm();
 		ResultSet rs = smt.executeQuery(sql);
 		if (rs.next())
 		{
-			JoueurDAO jDAO = new JoueurDAO(connection);
+			JoueurDAO jDAO = new JoueurDAO(this.getConnection());
 			return jDAO.getPlayerByID(rs.getInt("IDJoueur"));
 		}
 		return null;
@@ -54,12 +52,12 @@ public class UtilisateurDAO
 		Hashtable<String, Boolean> table = new Hashtable<String, Boolean>();
 
 		String sql = "select * from Utilisateur where Nom = '" + nomUser + "'";
-		Statement smt = connection.createStatement();
+		Statement smt = getStm();
 		ResultSet rs = smt.executeQuery(sql);
 		if (rs.next())
 		{
 			sql = "select * from Autorisation where Type = " + rs.getInt("TypeAutorisation");
-			smt = connection.createStatement();
+			smt = getStm();
 			rs = smt.executeQuery(sql);
 			if (rs.next())
 			{

@@ -11,9 +11,11 @@ package baseDeDonnee.metier;
  */
 public class Arbitre extends Personne
 {
+	private int equipe;
 
-	public Arbitre(int id, String nom, String prenom, int nationalite)
+	public Arbitre(int id, String nom, String prenom, int nationalite, int equipe)
 	{
 		super(id, nom, prenom, nationalite);
+		this.equipe = equipe;
 	}
 }

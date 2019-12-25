@@ -10,13 +10,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class JoueurDAO
+public class JoueurDAO extends DAO
 {
-	private Connection connection;
-
 	public JoueurDAO(Connection connection)
 	{
-		this.connection = connection;
+		super(connection);
 	}
 
 	public List<Joueur> getAllPlayers() throws SQLException
@@ -24,7 +22,7 @@ public class JoueurDAO
 		List<Joueur> liste = new ArrayList<Joueur>();
 
 		String sql = "select * from Joueur";
-		Statement smt = connection.createStatement();
+		Statement smt = getStm();
 		ResultSet rs = smt.executeQuery(sql);
 		while (rs.next())
 		{
@@ -36,7 +34,7 @@ public class JoueurDAO
 	public Joueur getPlayerByID(int ID) throws SQLException
 	{
 		String sql = "select * from Joueur where id = " + ID;
-		Statement smt = connection.createStatement();
+		Statement smt = getStm();
 		ResultSet rs = smt.executeQuery(sql);
 		Joueur j = null;
 		if (rs.next())

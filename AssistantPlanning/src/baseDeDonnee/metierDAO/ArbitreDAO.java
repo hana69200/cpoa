@@ -11,13 +11,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 
-public class ArbitreDAO
+public class ArbitreDAO extends DAO
 {
-	private Connection connection;
-
 	public ArbitreDAO(Connection connection)
 	{
-		this.connection = connection;
+		super(connection);
 	}
 
 	public List<Arbitre> getAllArbitritors() throws SQLException
@@ -25,11 +23,11 @@ public class ArbitreDAO
 		List<Arbitre> liste = new ArrayList<Arbitre>();
 
 		String sql = "select * from Arbitre";
-		Statement smt = connection.createStatement();
+		Statement smt = getStm();
 		ResultSet rs = smt.executeQuery(sql);
 		while (rs.next())
 		{
-			liste.add(new Arbitre(rs.getInt("ID"), rs.getString("Nom"), rs.getString("Prenom"), rs.getInt("Nationalite")));
+			liste.add(new Arbitre(rs.getInt("ID"), rs.getString("Nom"), rs.getString("Prenom"), rs.getInt("Nationalite"), rs.getInt("Equipe")));
 		}
 		return liste;
 	}
@@ -37,12 +35,12 @@ public class ArbitreDAO
 	public Arbitre getArbitritorByID(int ID) throws SQLException
 	{
 		String sql = "select * from Arbitre where id = " + ID;
-		Statement smt = connection.createStatement();
+		Statement smt = getStm();
 		ResultSet rs = smt.executeQuery(sql);
 		Arbitre j = null;
 		if (rs.next())
 		{
-			j = new Arbitre(rs.getInt("ID"), rs.getString("Nom"), rs.getString("Prenom"), rs.getInt("Nationalite"));
+			j = new Arbitre(rs.getInt("ID"), rs.getString("Nom"), rs.getString("Prenom"), rs.getInt("Nationalite"), rs.getInt("Equipe"));
 		}
 
 		return j;
