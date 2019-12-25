@@ -13,6 +13,7 @@ public class Match extends Appointment
 	private int equipeArbitre;
 	private Calendar date;
 	private Score score;
+	// TODOLATER equipes ramasseurs à ajouter
 
 	public Match(Joueur participant1, Joueur participant2, int equipeArbitre, Calendar date, Score score)
 	{

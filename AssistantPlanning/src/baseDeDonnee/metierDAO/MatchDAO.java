@@ -59,24 +59,11 @@ public class MatchDAO extends DAO
 		String timeAfter = Integer.toString(date.get(Calendar.HOUR_OF_DAY)) + ":"
 				+ Integer.toString(date.get(Calendar.MINUTE)) + ":00.000";
 
-		// TODO gestion heure
 		String sql = "select * from MatchTournois where DateDebut between '" + day + " " + timeBefore + "' and '" + day
 				+ " " + timeAfter + "'";
 
 		ResultSet rs = getRs(sql);
 		return !rs.next();
-	}
-
-	public boolean isJoueurDispo(Calendar date, Joueur joueur)
-	{
-		// TODO isJoueurDispo
-		return false;
-	}
-
-	public boolean isEquipeArbitreDispo(Calendar date, int equipe)
-	{
-		// TODO isEquipeArbitreDispo
-		return false;
 	}
 
 	public void createMatch(Match match)
