@@ -6,6 +6,8 @@ import com.mindfusion.scheduling.model.Appointment;
 
 public class Match extends Appointment
 {
+	public static int DUREE_MATCH = 30;
+	
 	private Joueur participant1;
 	private Joueur participant2;
 	private int equipeArbitre;
@@ -35,7 +37,7 @@ public class Match extends Appointment
 	{
 		return equipeArbitre;
 	}
-	
+
 	public Calendar getDate()
 	{
 		return date;
@@ -97,5 +99,5 @@ public class Match extends Appointment
 			return false;
 		return true;
 	}
-	
+
 }
