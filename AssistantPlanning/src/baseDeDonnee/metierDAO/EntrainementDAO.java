@@ -19,6 +19,13 @@ public class EntrainementDAO extends DAO
 		super(connection);
 	}
 
+	/**
+	 * renvoie une liste des entrainements d'un jour
+	 * 
+	 * @param date : le jour souhaité
+	 * @return List des entrainements du jour
+	 * @throws SQLException
+	 */
 	public List<Entrainement> getEntrainementByDay(Calendar date) throws SQLException
 	{
 		List<Entrainement> liste = new ArrayList<Entrainement>();

@@ -35,7 +35,7 @@ public class DAO
 
 	/**
 	 * parse un objet Calendar en une chaine de caractère utilisable dans une
-	 * requete sql
+	 * requete sql (pour le jour)
 	 * 
 	 * @param date : l'objet à parser
 	 * @return la chaine de caratere
@@ -46,6 +46,13 @@ public class DAO
 				+ Integer.toString(date.get(Calendar.DAY_OF_MONTH));
 	}
 
+	/**
+	 * parse un objet Calendar en une chaine de caractère utilisable dans une
+	 * requete sql (pour l'heure)
+	 * 
+	 * @param date : l'objet à parser
+	 * @return la chaine de caratere
+	 */
 	protected String getTime(Calendar date, int marge)
 	{
 		date.add(Calendar.MINUTE, marge);
@@ -55,6 +62,14 @@ public class DAO
 		return r;
 	}
 	
+	/**
+	 * renvoie un objet Calendar avec la date et l'heure stocker dans la base de donné
+	 * 
+	 * @param rs : le ResultSet ou est recupérer la date et l'heure
+	 * @param columnName : le nom de la colone ou est stocké la date et l'heure
+	 * @return l'objet Calendar
+	 * @throws SQLException
+	 */
 	protected Calendar getDateTime(ResultSet rs, String columnName) throws SQLException
 	{
 		Calendar cal = new GregorianCalendar();
