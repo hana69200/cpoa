@@ -10,6 +10,7 @@ import java.util.List;
 
 import baseDeDonnee.metier.Entrainement;
 import baseDeDonnee.metier.Joueur;
+import baseDeDonnee.metier.Match;
 
 public class EntrainementDAO extends DAO
 {
@@ -52,10 +53,17 @@ public class EntrainementDAO extends DAO
 		return false;
 	}
 
-	public boolean isCoursDispo(int numero, Calendar date)
+	public boolean isCoursDispo(int numero, Calendar date) throws SQLException
 	{
-		// TODO isCoursDispo
-		return false;
+		String day = getDay(date);
+		String timeBefore = getTime(date, -Entrainement.DUREE_RESERVATION);
+		String timeAfter = getTime(date, Entrainement.DUREE_RESERVATION);
+		
+		String sql = "select * from Entrainement where numerosCours = " + numero + " and Date between '" + day + " " + timeBefore + "' and '" + day
+				+ " " + timeAfter + "'";
+
+		ResultSet rs = getRs(sql);
+		return !rs.next();
 	}
 
 	public int getCoursDispo(Calendar date)

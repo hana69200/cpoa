@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import baseDeDonnee.metier.Entrainement;
 import baseDeDonnee.metierDAO.EntrainementDAO;
 import baseDeDonnee.metierDAO.JoueurDAO;
+import baseDeDonnee.metierDAO.MatchDAO;
 
 class TestEntrainementDAO extends TestSup
 {
@@ -53,6 +54,24 @@ class TestEntrainementDAO extends TestSup
 		assertEquals(l1, eDAO.getEntrainementByDay(d1));
 		assertEquals(l2, eDAO.getEntrainementByDay(d2));
 		assertEquals(l3, eDAO.getEntrainementByDay(d3));
+	}
+	
+	@Test
+	void testIsCoursDispo() throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException
+	{
+		EntrainementDAO eDAO = new EntrainementDAO(getCon());
+
+		GregorianCalendar d1 = new GregorianCalendar(2019, 11, 29, 5, 00); // 1 true
+		GregorianCalendar d2 = new GregorianCalendar(2019, 11, 30, 5, 00); // 1 false
+		GregorianCalendar d3 = new GregorianCalendar(2019, 11, 30, 5, 00); // 2 true
+		GregorianCalendar d4 = new GregorianCalendar(2019, 11, 30, 17, 30); // 2 false
+		GregorianCalendar d5 = new GregorianCalendar(2019, 11, 29, 9, 40); // 3 false
+		
+		assertTrue(eDAO.isCoursDispo(1, d1));
+		assertFalse(eDAO.isCoursDispo(1, d2));
+		assertTrue(eDAO.isCoursDispo(2, d3));
+		assertFalse(eDAO.isCoursDispo(2, d4));
+		assertFalse(eDAO.isCoursDispo(3, d5));
 	}
 
 }
