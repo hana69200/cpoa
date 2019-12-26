@@ -13,6 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import baseDeDonnee.metier.Entrainement;
+import baseDeDonnee.metier.Joueur;
 import baseDeDonnee.metierDAO.EntrainementDAO;
 import baseDeDonnee.metierDAO.JoueurDAO;
 import baseDeDonnee.metierDAO.MatchDAO;
@@ -61,11 +62,11 @@ class TestEntrainementDAO extends TestSup
 	{
 		EntrainementDAO eDAO = new EntrainementDAO(getCon());
 
-		GregorianCalendar d1 = new GregorianCalendar(2019, 11, 29, 5, 00); // 1 true
-		GregorianCalendar d2 = new GregorianCalendar(2019, 11, 30, 5, 00); // 1 false
-		GregorianCalendar d3 = new GregorianCalendar(2019, 11, 30, 5, 00); // 2 true
-		GregorianCalendar d4 = new GregorianCalendar(2019, 11, 30, 17, 30); // 2 false
-		GregorianCalendar d5 = new GregorianCalendar(2019, 11, 29, 9, 40); // 3 false
+		GregorianCalendar d1 = new GregorianCalendar(2019, 11, 29, 5, 00);
+		GregorianCalendar d2 = new GregorianCalendar(2019, 11, 30, 5, 00);
+		GregorianCalendar d3 = new GregorianCalendar(2019, 11, 30, 5, 00);
+		GregorianCalendar d4 = new GregorianCalendar(2019, 11, 30, 17, 30);
+		GregorianCalendar d5 = new GregorianCalendar(2019, 11, 29, 9, 40);
 		
 		assertTrue(eDAO.isCoursDispo(1, d1));
 		assertFalse(eDAO.isCoursDispo(1, d2));
@@ -73,5 +74,27 @@ class TestEntrainementDAO extends TestSup
 		assertFalse(eDAO.isCoursDispo(2, d4));
 		assertFalse(eDAO.isCoursDispo(3, d5));
 	}
-
+	
+	@Test
+	void testIsJoueurDispo() throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException
+	{
+		EntrainementDAO eDAO = new EntrainementDAO(getCon());
+		
+		GregorianCalendar d1 = new GregorianCalendar(2019, 11, 30, 5, 00);
+		Joueur j1 = new Joueur(1, "", "", 1);
+		GregorianCalendar d2 = new GregorianCalendar(2019, 11, 30, 5, 00);
+		Joueur j2 = new Joueur(2, "", "", 1);
+		GregorianCalendar d3 = new GregorianCalendar(2019, 11, 30, 4, 30);
+		Joueur j3 = new Joueur(1, "", "", 1);
+		GregorianCalendar d4 = new GregorianCalendar(2019, 11, 30, 5, 30);
+		Joueur j4 = new Joueur(1, "", "", 1);
+		GregorianCalendar d5 = new GregorianCalendar(2019, 11, 29, 5, 00);
+		Joueur j5 = new Joueur(1, "", "", 1);
+		
+		assertFalse(eDAO.isJoueurDispo(j1, d1));
+		assertTrue(eDAO.isJoueurDispo(j2, d2));
+		assertFalse(eDAO.isJoueurDispo(j3, d3));
+		assertFalse(eDAO.isJoueurDispo(j4, d4));
+		assertTrue(eDAO.isJoueurDispo(j5, d5));
+	}
 }

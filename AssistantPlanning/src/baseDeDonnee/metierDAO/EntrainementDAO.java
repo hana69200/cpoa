@@ -10,7 +10,6 @@ import java.util.List;
 
 import baseDeDonnee.metier.Entrainement;
 import baseDeDonnee.metier.Joueur;
-import baseDeDonnee.metier.Match;
 
 public class EntrainementDAO extends DAO
 {
@@ -47,12 +46,35 @@ public class EntrainementDAO extends DAO
 		return liste;
 	}
 
-	public boolean isJoueurDispo(Joueur joueur, Calendar date)
+	/**
+	 * renvoie si un joueur est dispo a une heure et un jours donnée 
+	 * 
+	 * @param joueur : le joueur
+	 * @param date : jour et heure souhaités
+	 * @return true si dispo, false sinon
+	 * @throws SQLException
+	 */
+	public boolean isJoueurDispo(Joueur joueur, Calendar date) throws SQLException
 	{
-		// TODO isJoueurDispo
-		return false;
+		String day = getDay(date);
+		String timeBefore = getTime(date, -Entrainement.DUREE_RESERVATION);
+		String timeAfter = getTime(date, Entrainement.DUREE_RESERVATION);
+		
+		String sql = "select * from Entrainement where Joueur = " + joueur.getId() + " and Date between '" + day + " " + timeBefore + "' and '" + day
+				+ " " + timeAfter + "'";
+
+		ResultSet rs = getRs(sql);
+		return !rs.next();
 	}
 
+	/**
+	 * renvoie si un cours est dispo a une heure et un jours donnée 
+	 * 
+	 * @param numero : numero du cours
+	 * @param date : jour et heure souhaités
+	 * @return true si dispo, false sinon
+	 * @throws SQLException
+	 */
 	public boolean isCoursDispo(int numero, Calendar date) throws SQLException
 	{
 		String day = getDay(date);
