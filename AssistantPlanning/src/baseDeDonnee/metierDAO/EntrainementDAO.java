@@ -1,8 +1,11 @@
 package baseDeDonnee.metierDAO;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import baseDeDonnee.metier.Entrainement;
@@ -16,10 +19,23 @@ public class EntrainementDAO extends DAO
 		super(connection);
 	}
 
-	public List<Entrainement> getEntrainementByDay(Calendar date)
+	public List<Entrainement> getEntrainementByDay(Calendar date) throws SQLException
 	{
 		List<Entrainement> liste = new ArrayList<Entrainement>();
-		// TODO getEntrainementByDay
+
+		String day = getDay(date);
+		String sql = "select * from Entrainement where Date between '" + day + " 00:00:00.000' and '" + day
+				+ " 23:59:59.999'";
+		ResultSet rs = getRs(sql);
+
+		Calendar cal = new GregorianCalendar();
+		JoueurDAO jDAO = new JoueurDAO(this.getConnection());
+
+		while (rs.next())
+		{
+			cal.setTime(rs.getDate("Date"));
+			liste.add(new Entrainement(jDAO.getPlayerByID(rs.getInt("Joueur")), date, rs.getInt("numerosCours")));
+		}
 		return liste;
 	}
 

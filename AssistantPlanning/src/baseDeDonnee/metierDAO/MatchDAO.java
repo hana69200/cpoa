@@ -21,18 +21,8 @@ public class MatchDAO extends DAO
 	}
 
 	/**
-	 * parse un objet Calendar en une chaine de caractère utilisable dans une requete sql
-	 * @param date : l'objet à parser
-	 * @return la chaine de caratere
-	 */
-	private String getDay(Calendar date)
-	{
-		return Integer.toString(date.get(Calendar.YEAR)) + "-" + Integer.toString(date.get(Calendar.MONTH) + 1) + "-"
-				+ Integer.toString(date.get(Calendar.DAY_OF_MONTH));
-	}
-
-	/**
 	 * renvoie une liste des matchs d'un jour
+	 * 
 	 * @param date : le jour souhaité
 	 * @return List des matchs du jour
 	 * @throws SQLException
@@ -62,19 +52,16 @@ public class MatchDAO extends DAO
 
 	/**
 	 * @param date : le jour et l'heure souhaité
-	 * @return true si le cours est libre a l'heure souhaiter (avec la marge definis dans la classe Match)
+	 * @return true si le cours est libre a l'heure souhaiter (avec la marge definis
+	 *         dans la classe Match)
 	 * @throws SQLException
 	 */
 	public boolean isCoursDispo(Calendar date) throws SQLException
 	{
 		String day = getDay(date);
-		date.add(Calendar.MINUTE, -Match.DUREE_MATCH);
-		String timeBefore = Integer.toString(date.get(Calendar.HOUR_OF_DAY)) + ":"
-				+ Integer.toString(date.get(Calendar.MINUTE)) + ":00.000";
-		date.add(Calendar.MINUTE, 2 * (Match.DUREE_MATCH));
-		String timeAfter = Integer.toString(date.get(Calendar.HOUR_OF_DAY)) + ":"
-				+ Integer.toString(date.get(Calendar.MINUTE)) + ":00.000";
-
+		String timeBefore = getTime(date, -Match.DUREE_MATCH);
+		String timeAfter = getTime(date, Match.DUREE_MATCH);
+		
 		String sql = "select * from MatchTournois where DateDebut between '" + day + " " + timeBefore + "' and '" + day
 				+ " " + timeAfter + "'";
 

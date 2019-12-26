@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Calendar;
+
+import baseDeDonnee.metier.Match;
 
 /**
  * Classe mère pour les classes accedant à la base de données
@@ -27,5 +30,27 @@ public class DAO
 	public Connection getConnection()
 	{
 		return connection;
+	}
+
+	/**
+	 * parse un objet Calendar en une chaine de caractère utilisable dans une
+	 * requete sql
+	 * 
+	 * @param date : l'objet à parser
+	 * @return la chaine de caratere
+	 */
+	protected String getDay(Calendar date)
+	{
+		return Integer.toString(date.get(Calendar.YEAR)) + "-" + Integer.toString(date.get(Calendar.MONTH) + 1) + "-"
+				+ Integer.toString(date.get(Calendar.DAY_OF_MONTH));
+	}
+
+	protected String getTime(Calendar date, int marge)
+	{
+		date.add(Calendar.MINUTE, marge);
+		String r = Integer.toString(date.get(Calendar.HOUR_OF_DAY)) + ":" + Integer.toString(date.get(Calendar.MINUTE))
+				+ ":00.000";
+		date.add(Calendar.MINUTE, -marge);
+		return r;
 	}
 }
