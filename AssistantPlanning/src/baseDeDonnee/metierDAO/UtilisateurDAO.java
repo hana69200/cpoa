@@ -16,6 +16,7 @@ public class UtilisateurDAO extends DAO
 
 	/**
 	 * verifie si un utilisateur existe
+	 * 
 	 * @param nomUser : le nom à tester
 	 * @return true s'il existe false sinon
 	 * @throws SQLException
@@ -29,9 +30,11 @@ public class UtilisateurDAO extends DAO
 
 	/**
 	 * verifie si le mot de passe est correct
-	 * @param nomUser : nom de l'utilisateur
+	 * 
+	 * @param nomUser  : nom de l'utilisateur
 	 * @param password : le mot de passe testé
-	 * @return true si l'utilisateur existe et que le mot de passe est correct, false sinon
+	 * @return true si l'utilisateur existe et que le mot de passe est correct,
+	 *         false sinon
 	 * @throws SQLException
 	 */
 	public boolean isPasswordOK(String nomUser, String password) throws SQLException
@@ -46,6 +49,7 @@ public class UtilisateurDAO extends DAO
 
 	/**
 	 * Renvoie le joueur associer au nom d'utilisateur
+	 * 
 	 * @param nomUser : nom d'utilisateur
 	 * @return le Joueur s'il existe, null sinon
 	 * @throws SQLException
@@ -64,6 +68,7 @@ public class UtilisateurDAO extends DAO
 
 	/**
 	 * renvoie les autorisation associer à un utilisateur
+	 * 
 	 * @param nomUser nom d'utilisateur
 	 * @return table des autorisation, null si le l'utilisateur n'existe pas
 	 * @throws SQLException

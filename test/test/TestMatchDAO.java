@@ -2,6 +2,7 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
@@ -29,8 +30,8 @@ class TestMatchDAO extends TestSup
 	}
 
 	@Test
-	void testGetMatchsByDay()
-			throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException
+	void testGetMatchsByDay() throws ClassNotFoundException, InstantiationException, IllegalAccessException,
+			SQLException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException
 	{
 		MatchDAO mDAO = new MatchDAO(getCon());
 
@@ -50,7 +51,8 @@ class TestMatchDAO extends TestSup
 	}
 
 	@Test
-	void testIsCoursDispo() throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException
+	void testIsCoursDispo() throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException,
+			IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException
 	{
 		MatchDAO mDAO = new MatchDAO(getCon());
 

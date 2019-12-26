@@ -6,12 +6,12 @@ import com.mindfusion.scheduling.model.Appointment;
 
 public class Match extends Appointment
 {
-	
+
 	/**
-	durée d'un match en minutes
-	**/
+	 * durée d'un match en minutes
+	 **/
 	public static int DUREE_MATCH = 30;
-	
+
 	private Joueur participant1;
 	private Joueur participant2;
 	private int equipeArbitre;
@@ -20,11 +20,11 @@ public class Match extends Appointment
 	// TODOLATER equipes ramasseurs à ajouter
 
 	/**
-	 * @param participant1 : 1er participant
-	 * @param participant2 : 2è participant
+	 * @param participant1  : 1er participant
+	 * @param participant2  : 2è participant
 	 * @param equipeArbitre : equipe arbitrant le match
-	 * @param date : date et heure de début du match
-	 * @param score : score final du match
+	 * @param date          : date et heure de début du match
+	 * @param score         : score final du match
 	 */
 	public Match(Joueur participant1, Joueur participant2, int equipeArbitre, Calendar date, Score score)
 	{

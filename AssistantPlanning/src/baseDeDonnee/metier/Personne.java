@@ -19,7 +19,7 @@ public class Personne
 	{
 		return id;
 	}
-	
+
 	public String getNom()
 	{
 		return nom;
@@ -29,7 +29,7 @@ public class Personne
 	{
 		return prenom;
 	}
-	
+
 	public int getNationalite()
 	{
 		return nationalite;

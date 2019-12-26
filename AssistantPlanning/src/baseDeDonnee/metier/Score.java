@@ -15,9 +15,9 @@ public class Score
 	{
 		if (score.indexOf("-") != -1)
 		{
-			this.s1 = Integer.parseInt(score.substring(0, score.indexOf("-")-1));
-			this.s2 = Integer.parseInt(score.substring(score.indexOf("-")+2));
-		} else 
+			this.s1 = Integer.parseInt(score.substring(0, score.indexOf("-") - 1));
+			this.s2 = Integer.parseInt(score.substring(score.indexOf("-") + 2));
+		} else
 		{
 			s1 = 0;
 			s2 = 0;

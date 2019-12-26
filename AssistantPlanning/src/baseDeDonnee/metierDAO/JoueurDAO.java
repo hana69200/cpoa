@@ -28,7 +28,8 @@ public class JoueurDAO extends DAO
 		ResultSet rs = getRs(sql);
 		while (rs.next())
 		{
-			liste.add(new Joueur(rs.getInt("ID"), rs.getString("Nom"), rs.getString("Prenom"), rs.getInt("Nationalite")));
+			liste.add(
+					new Joueur(rs.getInt("ID"), rs.getString("Nom"), rs.getString("Prenom"), rs.getInt("Nationalite")));
 		}
 		return liste;
 	}

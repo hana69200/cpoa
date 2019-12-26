@@ -2,6 +2,7 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
 import java.util.Hashtable;
 
@@ -25,42 +26,47 @@ class TestUserDAO extends TestSup
 	}
 
 	@Test
-	void testIsUserOK() throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException
+	void testIsUserOK() throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException,
+			IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException
 	{
 		UtilisateurDAO UDAO = new UtilisateurDAO(getCon());
-		
+
 		assertEquals(true, UDAO.isUserOK("A1"));
 		assertEquals(true, UDAO.isUserOK("J1"));
 		assertEquals(false, UDAO.isUserOK("ghjkl"));
 	}
-	
+
 	@Test
-	void testIsPasswordOK() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
+	void testIsPasswordOK() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException,
+			IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException
 	{
 		UtilisateurDAO UDAO = new UtilisateurDAO(getCon());
-		
+
 		assertEquals(true, UDAO.isPasswordOK("A1", "A1mdp"));
 		assertEquals(false, UDAO.isPasswordOK("A1", "sdrftghij"));
 		assertEquals(false, UDAO.isPasswordOK("xdcfvgbhnj", "A1mdp"));
 		assertEquals(false, UDAO.isPasswordOK("bgt", "zsedfghj"));
 	}
-	
+
 	@Test
-	void testGetJoueur() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
+	void testGetJoueur() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException,
+			IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException
 	{
 		UtilisateurDAO UDAO = new UtilisateurDAO(getCon());
-		
+
 		assertEquals(null, UDAO.getJoueur("A1"));
 		Joueur j = new Joueur(1, "ISNER", "John", 3);
 		assertEquals(j, UDAO.getJoueur("J1"));
 		assertEquals(null, UDAO.getJoueur("sdxgbh"));
 	}
-	
+
 	@Test
-	void testGetAutorisation() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
+	void testGetAutorisation()
+			throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException,
+			IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException
 	{
 		UtilisateurDAO UDAO = new UtilisateurDAO(getCon());
-		
+
 		Hashtable<String, Boolean> ta = new Hashtable<String, Boolean>();
 		ta.put("ReservationEntr", false);
 		ta.put("AjoutMatch", true);

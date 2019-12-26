@@ -1,5 +1,6 @@
 package test;
 
+import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
@@ -7,11 +8,11 @@ import java.sql.SQLException;
 
 public class TestSup
 {
-	protected Connection getCon()
-			throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
+	protected Connection getCon() throws ClassNotFoundException, InstantiationException, IllegalAccessException,
+			IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, SQLException
 	{
 		Class<?> c = Class.forName("com.mysql.cj.jdbc.Driver");
-		Driver pilote = (Driver) c.newInstance();
+		Driver pilote = (Driver) c.getDeclaredConstructor().newInstance();
 		DriverManager.registerDriver(pilote);
 		String protocole = "jdbc:mysql:";
 		String ip = "iutdoua-web.univ-lyon1.fr";

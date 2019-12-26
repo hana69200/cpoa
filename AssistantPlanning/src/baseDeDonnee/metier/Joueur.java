@@ -31,6 +31,5 @@ public class Joueur extends Personne
 			return false;
 		return true;
 	}
-	
-	
+
 }

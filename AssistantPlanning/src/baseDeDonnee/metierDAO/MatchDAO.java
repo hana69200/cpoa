@@ -5,11 +5,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import baseDeDonnee.metier.Joueur;
 import baseDeDonnee.metier.Match;
 import baseDeDonnee.metier.Score;
 
@@ -61,7 +59,7 @@ public class MatchDAO extends DAO
 		String day = getDay(date);
 		String timeBefore = getTime(date, -Match.DUREE_MATCH);
 		String timeAfter = getTime(date, Match.DUREE_MATCH);
-		
+
 		String sql = "select * from MatchTournois where DateDebut between '" + day + " " + timeBefore + "' and '" + day
 				+ " " + timeAfter + "'";
 

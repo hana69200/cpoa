@@ -9,4 +9,9 @@ public class Arbitre extends Personne
 		super(id, nom, prenom, nationalite);
 		this.equipe = equipe;
 	}
+
+	public int getEquipe()
+	{
+		return equipe;
+	}
 }
