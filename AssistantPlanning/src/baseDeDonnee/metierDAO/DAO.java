@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import baseDeDonnee.metier.Match;
 
@@ -53,4 +54,18 @@ public class DAO
 		date.add(Calendar.MINUTE, -marge);
 		return r;
 	}
+	
+	protected Calendar getDateTime(ResultSet rs, String columnName) throws SQLException
+	{
+		Calendar cal = new GregorianCalendar();
+		Calendar cal2 = new GregorianCalendar();
+		cal.setTime(rs.getDate(columnName));
+		cal2.setTime(rs.getTime(columnName));
+		
+		cal.set(Calendar.HOUR_OF_DAY, cal2.get(Calendar.HOUR_OF_DAY));
+		cal.set(Calendar.MINUTE, cal2.get(Calendar.MINUTE));
+		cal.set(Calendar.SECOND, cal2.get(Calendar.SECOND));
+		
+		return cal;
+	}	
 }

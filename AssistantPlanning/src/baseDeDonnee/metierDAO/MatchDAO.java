@@ -41,7 +41,7 @@ public class MatchDAO extends DAO
 
 		while (rs.next())
 		{
-			cal.setTime(rs.getDate("DateDebut"));
+			cal = this.getDateTime(rs, "DateDebut");
 			matchs.add(new Match(jDAO.getPlayerByID(rs.getInt("Participant1")),
 					jDAO.getPlayerByID(rs.getInt("Participant2")), rs.getInt("equipeArbitre"), cal,
 					new Score(rs.getString("Score"))));

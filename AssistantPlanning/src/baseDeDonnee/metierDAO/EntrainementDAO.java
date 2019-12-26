@@ -33,7 +33,7 @@ public class EntrainementDAO extends DAO
 
 		while (rs.next())
 		{
-			cal.setTime(rs.getDate("Date"));
+			cal = this.getDateTime(rs, "Date");
 			liste.add(new Entrainement(jDAO.getPlayerByID(rs.getInt("Joueur")), cal, rs.getInt("numerosCours")));
 		}
 		return liste;

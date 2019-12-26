@@ -45,7 +45,7 @@ class TestEntrainementDAO extends TestSup
 		l1.add(new Entrainement(jDao.getPlayerByID(2), db2, 2));
 		
 		List<Entrainement> l2 = new ArrayList<Entrainement>();
-		GregorianCalendar db3 = new GregorianCalendar(2019, 11, 15, 9, 00);
+		GregorianCalendar db3 = new GregorianCalendar(2019, 11, 29, 9, 00);
 		l2.add(new Entrainement(jDao.getPlayerByID(4), db3, 3));
 		
 		List<Entrainement> l3 = new ArrayList<Entrainement>();

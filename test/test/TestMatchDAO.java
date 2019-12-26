@@ -39,9 +39,10 @@ class TestMatchDAO extends TestSup
 		List<Match> t1 = new ArrayList<Match>();
 
 		GregorianCalendar d2 = new GregorianCalendar(2019, 11, 20);
+		GregorianCalendar db2 = new GregorianCalendar(2019, 11, 20, 12, 20, 00);
 		List<Match> l2 = mDAO.getMatchsByDay(d2);
 		List<Match> t2 = new ArrayList<Match>();
-		t2.add(new Match(new Joueur(23, "NADAL", "Rafael", 1), new Joueur(6, "CHARDY", "Jérémy", 2), 1, d2,
+		t2.add(new Match(new Joueur(23, "NADAL", "Rafael", 1), new Joueur(6, "CHARDY", "Jérémy", 2), 1, db2,
 				new Score(15, 15)));
 
 		assertEquals(t1, l1);
