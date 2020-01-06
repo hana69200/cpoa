@@ -8,36 +8,41 @@ import java.util.List;
 import baseDeDonnee.metier.Joueur;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
-public class JoueurDAO
+public class JoueurDAO extends DAO
 {
-	private Connection connection;
-
 	public JoueurDAO(Connection connection)
 	{
-		this.connection = connection;
+		super(connection);
 	}
 
+	/**
+	 * @return la liste de tout les joueurs
+	 * @throws SQLException
+	 */
 	public List<Joueur> getAllPlayers() throws SQLException
 	{
 		List<Joueur> liste = new ArrayList<Joueur>();
 
 		String sql = "select * from Joueur";
-		Statement smt = connection.createStatement();
-		ResultSet rs = smt.executeQuery(sql);
+		ResultSet rs = getRs(sql);
 		while (rs.next())
 		{
-			liste.add(new Joueur(rs.getInt("ID"), rs.getString("Nom"), rs.getString("Prenom"), rs.getInt("Nationalite")));
+			liste.add(
+					new Joueur(rs.getInt("ID"), rs.getString("Nom"), rs.getString("Prenom"), rs.getInt("Nationalite")));
 		}
 		return liste;
 	}
 
+	/**
+	 * @param ID : ID du joueur recherché
+	 * @return le Joueur s'il existe, null sinon
+	 * @throws SQLException
+	 */
 	public Joueur getPlayerByID(int ID) throws SQLException
 	{
 		String sql = "select * from Joueur where id = " + ID;
-		Statement smt = connection.createStatement();
-		ResultSet rs = smt.executeQuery(sql);
+		ResultSet rs = getRs(sql);
 		Joueur j = null;
 		if (rs.next())
 		{

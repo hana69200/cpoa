@@ -8,9 +8,6 @@ package assistantplanning;
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 import baseDeDonnee.metierDAO.JoueurDAO;
 
@@ -26,7 +23,7 @@ public class AssistantPlanning
 		try
 		{
 			Class<?> c = Class.forName("com.mysql.cj.jdbc.Driver");
-			Driver pilote = (Driver) c.newInstance();
+			Driver pilote = (Driver) c.getDeclaredConstructor().newInstance();
 			DriverManager.registerDriver(pilote);
 			String protocole = "jdbc:mysql:";
 			String ip = "iutdoua-web.univ-lyon1.fr";
@@ -37,7 +34,7 @@ public class AssistantPlanning
 			String motDePasse = "270858";
 
 			Connection con = DriverManager.getConnection(conString, nomConnexion, motDePasse);
-			
+
 			JoueurDAO jdao = new JoueurDAO(con);
 			System.out.println(jdao.getPlayerByID(1));
 

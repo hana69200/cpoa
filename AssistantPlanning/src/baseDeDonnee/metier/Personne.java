@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package baseDeDonnee.metier;
 
-/**
- *
- * @author MarionM
- */
 public class Personne
 {
 	protected int id;
@@ -28,7 +19,7 @@ public class Personne
 	{
 		return id;
 	}
-	
+
 	public String getNom()
 	{
 		return nom;
@@ -38,7 +29,7 @@ public class Personne
 	{
 		return prenom;
 	}
-	
+
 	public int getNationalite()
 	{
 		return nationalite;
