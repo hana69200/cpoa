@@ -1,8 +1,10 @@
 package baseDeDonnee.metierDAO;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -67,13 +69,28 @@ public class MatchDAO extends DAO
 		return !rs.next();
 	}
 
-	public void createMatch(Match match)
+	public void createMatch(Match match) throws SQLException
 	{
-		// TODO createMatch
+		String sql = "INSERT INTO MatchTournois (Participant1, Participant2, equipeArbitre, DateDebut, Score) VALUES "
+				+ "(? , ?, ?, ?, ?)";
+		PreparedStatement stm = getConnection().prepareStatement(sql);
+		stm.setInt(1, match.getParticipant1().getId());
+		stm.setInt(2, match.getParticipant2().getId());
+		stm.setInt(3, match.getEquipeArbitre());
+		stm.setTimestamp(4, new java.sql.Timestamp(match.getDate().getTime().getTime()));
+		stm.setString(5, match.getScore().toString());
+		
+		stm.execute();
 	}
 
-	public void deleteMatch(Match match)
+	public void deleteMatch(Match match) throws SQLException
 	{
-		// TODO deleteMatch
+		String sql = "delete from MatchTournois where Participant1 = ? and Participant2 = ? and DateDebut = ?";
+		PreparedStatement stm = getConnection().prepareStatement(sql);
+		stm.setInt(1, match.getParticipant1().getId());
+		stm.setInt(2, match.getParticipant2().getId());
+		stm.setTimestamp(3, new java.sql.Timestamp(match.getDate().getTime().getTime()));
+		
+		stm.execute();
 	}
 }

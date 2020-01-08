@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import baseDeDonnee.metier.Joueur;
 import baseDeDonnee.metier.Match;
 import baseDeDonnee.metier.Score;
+import baseDeDonnee.metierDAO.JoueurDAO;
 import baseDeDonnee.metierDAO.MatchDAO;
 
 class TestMatchDAO extends TestSup
@@ -66,6 +67,56 @@ class TestMatchDAO extends TestSup
 		assertFalse(mDAO.isCoursDispo(d3));
 		assertFalse(mDAO.isCoursDispo(d4));
 		assertTrue(mDAO.isCoursDispo(d5));
+	}
+
+	@Test
+	void testCreateMatch() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException,
+			IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException
+	{
+		JoueurDAO jDAO = new JoueurDAO(getCon());
+		MatchDAO mDAO = new MatchDAO(getCon());
+		Joueur j1 = jDAO.getPlayerByID(1);
+		Joueur j2 = jDAO.getPlayerByID(3);
+		GregorianCalendar d1 = new GregorianCalendar(2020, 0, 20, 15, 40);
+		Score s1 = new Score(0, 0);
+		Match m = new Match(j1, j2, 2, d1, s1);
+		mDAO.deleteMatch(m);
+		mDAO.createMatch(m);
+
+		List<Match> l1 = mDAO.getMatchsByDay(d1);
+		List<Match> t1 = new ArrayList<Match>();
+		t1.add(m);
+
+		assertEquals(l1, t1);
+	}
+
+	@Test
+	void testDeleteMatch() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException,
+			IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException
+	{
+		JoueurDAO jDAO = new JoueurDAO(getCon());
+		MatchDAO mDAO = new MatchDAO(getCon());
+		Joueur j1 = jDAO.getPlayerByID(1);
+		Joueur j2 = jDAO.getPlayerByID(3);
+		GregorianCalendar d1 = new GregorianCalendar(2020, 0, 20, 15, 40);
+		Score s1 = new Score(0, 0);
+		Match m = new Match(j1, j2, 2, d1, s1);
+		
+		mDAO.deleteMatch(m);
+		mDAO.createMatch(m);
+		
+		List<Match> l1 = mDAO.getMatchsByDay(d1);
+		List<Match> t1 = new ArrayList<Match>();
+		t1.add(m);
+		assertEquals(l1, t1);
+		
+		mDAO.deleteMatch(m);
+		t1.clear();
+		l1.clear();
+		l1 = mDAO.getMatchsByDay(d1);
+		System.out.println(t1);
+		
+		assertEquals(l1, t1);
 	}
 
 }
