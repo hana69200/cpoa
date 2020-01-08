@@ -5,6 +5,13 @@
  */
 package vue;
 
+import baseDeDonnee.metier.Utilisateur;
+import baseDeDonnee.metierDAO.JoueurDAO;
+import baseDeDonnee.metierDAO.UtilisateurDAO;
+import java.sql.Connection;
+import java.sql.Driver;
+import java.sql.DriverManager;
+
 /**
  *
  * @author MarionM
@@ -36,6 +43,7 @@ public class Connexion extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         Valider = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1000, 800));
@@ -90,7 +98,15 @@ public class Connexion extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPasswordField1.setText("jPasswordField1");
+        jPasswordField1.setText("exemple");
+        jPasswordField1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jPasswordField1FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jPasswordField1FocusLost(evt);
+            }
+        });
         jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jPasswordField1ActionPerformed(evt);
@@ -99,6 +115,14 @@ public class Connexion extends javax.swing.JFrame {
 
         jTextField1.setText("Identifiant");
         jTextField1.setName(""); // NOI18N
+        jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField1FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextField1FocusLost(evt);
+            }
+        });
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -112,9 +136,12 @@ public class Connexion extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Le mot de passe est erroné");
         jLabel1.setFocusable(false);
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        jLabel2.setToolTipText("");
+        jLabel2.setFocusable(false);
+        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -126,22 +153,28 @@ public class Connexion extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(Valider))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jPasswordField1)
-                        .addComponent(jTextField1)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)))
-                .addContainerGap(439, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPasswordField1)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(249, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(151, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
                 .addComponent(Valider)
                 .addGap(307, 307, 307))
         );
@@ -175,13 +208,71 @@ public class Connexion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void ValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValiderActionPerformed
+        
+		try
+		{
+			Class<?> c = Class.forName("com.mysql.cj.jdbc.Driver");
+			Driver pilote = (Driver) c.getDeclaredConstructor().newInstance();
+			DriverManager.registerDriver(pilote);
+			final String protocole = "jdbc:mysql:";
+			String ip = "iutdoua-web.univ-lyon1.fr";
+			String port = "3306";
+			String nomBase = "p1607863";
+			String conString = protocole + "//" + ip + ":" + port + "/" + nomBase;
+			String nomConnexion = "p1607863";
+			String motDePasse = "270858";
+
+			Connection con = DriverManager.getConnection(conString, nomConnexion, motDePasse);
+
+			UtilisateurDAO u = new UtilisateurDAO(con);
+			
+                        if(!u.isUserOK(jTextField1.getText())){
+                            jLabel2.setText("L'identifiant est inconnu");
+                        } else {
+                            jLabel2.setText("");
+                            String myPass=String.valueOf(jPasswordField1.getPassword());
+                            if(!u.isPasswordOK(jTextField1.getText(), myPass)){
+                                jLabel1.setText("Le mot de passe est erroné");
+                            } else {
+                                jLabel1.setText("");
+                            }
+                        }
+                        
+		} catch (Exception e)
+		{
+			System.out.println(e.getMessage());
+			// gestion des exceptions
+		}
+        
+        
+    }//GEN-LAST:event_ValiderActionPerformed
+
+    private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
+        if(jTextField1.getText().contentEquals("Identifiant"))
+            jTextField1.setText("");
+    }//GEN-LAST:event_jTextField1FocusGained
+
+    private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusLost
+        if(jTextField1.getText().contentEquals(""))
+            jTextField1.setText("Identifiant");
+    }//GEN-LAST:event_jTextField1FocusLost
+
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordField1ActionPerformed
 
-    private void ValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValiderActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ValiderActionPerformed
+    private void jPasswordField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPasswordField1FocusLost
+        String myPass=String.valueOf(jPasswordField1.getPassword());
+        if(myPass.contentEquals(""))
+            jPasswordField1.setText("exemple");
+    }//GEN-LAST:event_jPasswordField1FocusLost
+
+    private void jPasswordField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPasswordField1FocusGained
+        String myPass=String.valueOf(jPasswordField1.getPassword());
+        if(myPass.contentEquals("exemple"))
+            jPasswordField1.setText("");
+    }//GEN-LAST:event_jPasswordField1FocusGained
 
     /**
      * @param args the command line arguments
@@ -223,6 +314,7 @@ public class Connexion extends javax.swing.JFrame {
     private javax.swing.JButton connexion;
     private javax.swing.JPanel header;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;

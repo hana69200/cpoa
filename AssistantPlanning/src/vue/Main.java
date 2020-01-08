@@ -122,7 +122,9 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void connexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connexionActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        Connexion c = new Connexion();
+        c.setVisible(true);
     }//GEN-LAST:event_connexionActionPerformed
 
     /**

@@ -10,6 +10,7 @@ import java.sql.Driver;
 import java.sql.DriverManager;
 
 import baseDeDonnee.metierDAO.JoueurDAO;
+import vue.Main;
 
 /**
  *
@@ -25,7 +26,7 @@ public class AssistantPlanning
 			Class<?> c = Class.forName("com.mysql.cj.jdbc.Driver");
 			Driver pilote = (Driver) c.getDeclaredConstructor().newInstance();
 			DriverManager.registerDriver(pilote);
-			String protocole = "jdbc:mysql:";
+			final String protocole = "jdbc:mysql:";
 			String ip = "iutdoua-web.univ-lyon1.fr";
 			String port = "3306";
 			String nomBase = "p1607863";
@@ -38,6 +39,9 @@ public class AssistantPlanning
 			JoueurDAO jdao = new JoueurDAO(con);
 			System.out.println(jdao.getPlayerByID(1));
 
+                        Main m = new Main();
+                        m.setVisible(true);
+                        
 		} catch (Exception e)
 		{
 			System.out.println(e.getMessage());
