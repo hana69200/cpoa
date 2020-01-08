@@ -11,6 +11,8 @@ import baseDeDonnee.metierDAO.UtilisateurDAO;
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
+import java.util.Hashtable;
+
 
 /**
  *
@@ -228,18 +230,31 @@ public class Connexion extends javax.swing.JFrame {
 			Connection con = DriverManager.getConnection(conString, nomConnexion, motDePasse);
 
 			UtilisateurDAO u = new UtilisateurDAO(con);
+                        String myPass=String.valueOf(jPasswordField1.getPassword());
 			
                         if(!u.isUserOK(jTextField1.getText())){
                             jLabel2.setText("L'identifiant est inconnu");
                         } else {
                             jLabel2.setText("");
-                            String myPass=String.valueOf(jPasswordField1.getPassword());
+                            
                             if(!u.isPasswordOK(jTextField1.getText(), myPass)){
                                 jLabel1.setText("Le mot de passe est erroné");
                             } else {
                                 jLabel1.setText("");
                             }
                         }
+                        
+                        if(u.isUserOK(jTextField1.getText()) && u.isPasswordOK(jTextField1.getText(), myPass)){
+                            Hashtable<String,Boolean> autorisation = u.getAutorisation(jTextField1.getText());
+                            autorisation.get("");
+                            
+                            this.setVisible(false);
+                            
+                            
+                            
+                        }
+                        
+                        
                         
 		} catch (Exception e)
 		{
