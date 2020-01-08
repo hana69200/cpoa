@@ -100,4 +100,29 @@ class TestEntrainementDAO extends TestSup
 		assertFalse(eDAO.isJoueurDispo(j4, d4));
 		assertTrue(eDAO.isJoueurDispo(j5, d5));
 	}
+
+	@Test
+	void testGetCoursDispo() throws ClassNotFoundException, InstantiationException, IllegalAccessException,
+			IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, SQLException
+	{
+		EntrainementDAO eDAO = new EntrainementDAO(getCon());
+
+		GregorianCalendar d1 = new GregorianCalendar(2019, 11, 30, 17, 00);
+		GregorianCalendar d2 = new GregorianCalendar(2020, 1, 25, 5, 00);
+		
+		List<Integer> t1 = eDAO.getCoursDispo(d1);
+		List<Integer> t2 = eDAO.getCoursDispo(d2);
+
+		List<Integer> l1 = new ArrayList<Integer>();
+		l1.add(1);
+		l1.add(3);
+		
+		List<Integer> l2 = new ArrayList<Integer>();
+		l2.add(1);
+		l2.add(2);
+		l2.add(3);
+		
+		assertEquals(l1, t1);
+		assertEquals(l2, t2);
+	}
 }

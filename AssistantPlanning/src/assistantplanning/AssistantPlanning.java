@@ -11,7 +11,6 @@ import java.sql.DriverManager;
 
 import javax.swing.SwingUtilities;
 
-import baseDeDonnee.metierDAO.JoueurDAO;
 import vue.Main;
 
 /**
@@ -52,7 +51,6 @@ public class AssistantPlanning
 		} catch (Exception e)
 		{
 			System.out.println(e.getMessage());
-			// gestion des exceptions
 		}
 	}
 }
