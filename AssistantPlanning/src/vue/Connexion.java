@@ -249,6 +249,8 @@ public class Connexion extends javax.swing.JFrame {
                             autorisation.get("");
                             
                             this.setVisible(false);
+                            Modification m = new Modification();
+                            m.setVisible(true);
                             
                             
                             

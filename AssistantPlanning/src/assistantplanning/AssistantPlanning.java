@@ -39,6 +39,7 @@ public class AssistantPlanning
 			JoueurDAO jdao = new JoueurDAO(con);
 			System.out.println(jdao.getPlayerByID(1));
 
+                        
                         Main m = new Main();
                         m.setVisible(true);
                         
