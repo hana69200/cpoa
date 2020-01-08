@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
 
+import javax.swing.SwingUtilities;
+
 import baseDeDonnee.metierDAO.JoueurDAO;
 import vue.Main;
 
@@ -39,9 +41,17 @@ public class AssistantPlanning
 			JoueurDAO jdao = new JoueurDAO(con);
 			System.out.println(jdao.getPlayerByID(1));
 
-                        Main m = new Main();
-                        m.setVisible(true);
-                        
+			SwingUtilities.invokeLater(new Runnable()
+			{
+
+				@Override
+				public void run()
+				{
+					Main m = new Main();
+					m.setVisible(true);
+				}
+			});
+
 		} catch (Exception e)
 		{
 			System.out.println(e.getMessage());
