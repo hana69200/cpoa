@@ -101,21 +101,21 @@ class TestMatchDAO extends TestSup
 		GregorianCalendar d1 = new GregorianCalendar(2020, 0, 20, 15, 40);
 		Score s1 = new Score(0, 0);
 		Match m = new Match(j1, j2, 2, d1, s1);
-		
+
 		mDAO.deleteMatch(m);
 		mDAO.createMatch(m);
-		
+
 		List<Match> l1 = mDAO.getMatchsByDay(d1);
 		List<Match> t1 = new ArrayList<Match>();
 		t1.add(m);
 		assertEquals(l1, t1);
-		
+
 		mDAO.deleteMatch(m);
 		t1.clear();
 		l1.clear();
 		l1 = mDAO.getMatchsByDay(d1);
 		System.out.println(t1);
-		
+
 		assertEquals(l1, t1);
 	}
 

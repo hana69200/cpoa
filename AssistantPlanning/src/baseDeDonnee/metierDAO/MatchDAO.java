@@ -78,7 +78,7 @@ public class MatchDAO extends DAO
 		stm.setInt(3, match.getEquipeArbitre());
 		stm.setTimestamp(4, new java.sql.Timestamp(match.getDate().getTime().getTime()));
 		stm.setString(5, match.getScore().toString());
-		
+
 		stm.execute();
 	}
 
@@ -89,7 +89,7 @@ public class MatchDAO extends DAO
 		stm.setInt(1, match.getParticipant1().getId());
 		stm.setInt(2, match.getParticipant2().getId());
 		stm.setTimestamp(3, new java.sql.Timestamp(match.getDate().getTime().getTime()));
-		
+
 		stm.execute();
 	}
 }
