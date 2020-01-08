@@ -88,6 +88,13 @@ public class EntrainementDAO extends DAO
 		return !rs.next();
 	}
 
+	/**
+	 * Renvoie la liste des cours cours disponibles à la date et l'heure spécifié
+	 * 
+	 * @param date : date et heure
+	 * @return liste des cours disponible
+	 * @throws SQLException
+	 */
 	public List<Integer> getCoursDispo(Calendar date) throws SQLException
 	{
 		String day = getDay(date);

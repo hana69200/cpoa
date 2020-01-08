@@ -68,6 +68,12 @@ public class MatchDAO extends DAO
 		return !rs.next();
 	}
 
+	/**
+	 * ajoute un match en base de données
+	 * 
+	 * @param match : le match a ajouter en base de données
+	 * @throws SQLException
+	 */
 	public void createMatch(Match match) throws SQLException
 	{
 		String sql = "INSERT INTO MatchTournois (Participant1, Participant2, equipeArbitre, DateDebut, Score) VALUES "
@@ -82,6 +88,12 @@ public class MatchDAO extends DAO
 		stm.execute();
 	}
 
+	/**
+	 * supprime un match dans la base de données
+	 * 
+	 * @param match : le match a supprimé en base de données
+	 * @throws SQLException
+	 */
 	public void deleteMatch(Match match) throws SQLException
 	{
 		String sql = "delete from MatchTournois where Participant1 = ? and Participant2 = ? and DateDebut = ?";
