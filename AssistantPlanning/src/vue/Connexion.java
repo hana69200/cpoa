@@ -201,7 +201,9 @@ public class Connexion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void connexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connexionActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        Main m = new Main();
+        m.setVisible(true);
     }//GEN-LAST:event_connexionActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
