@@ -29,7 +29,7 @@ class TestUserDAO extends TestSup
 	void testIsUserOK() throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException,
 			IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException
 	{
-            
+
 		UtilisateurDAO UDAO = new UtilisateurDAO(getCon());
 
 		assertEquals(true, UDAO.isUserOK("A1"));

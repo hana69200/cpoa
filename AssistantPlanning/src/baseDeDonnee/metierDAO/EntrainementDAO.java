@@ -93,12 +93,12 @@ public class EntrainementDAO extends DAO
 		String day = getDay(date);
 		String timeBefore = getTime(date, -Entrainement.DUREE_RESERVATION);
 		String timeAfter = getTime(date, Entrainement.DUREE_RESERVATION);
-		
+
 		String sql = "select ID from CoursEntrainement where ID not in (select numerosCours from Entrainement where Date between '"
 				+ day + " " + timeBefore + "' and '" + day + " " + timeAfter + "')";
-		
+
 		ResultSet rs = getRs(sql);
-		
+
 		List<Integer> list = new ArrayList<Integer>();
 		while (rs.next())
 		{
