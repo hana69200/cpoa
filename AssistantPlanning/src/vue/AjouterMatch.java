@@ -28,14 +28,16 @@ public class AjouterMatch extends javax.swing.JFrame {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         Connection c = AssistantPlanning.getConnection();
         JoueurDAO j = new JoueurDAO(c);
-        JoueurComboBoxModel model = new JoueurComboBoxModel(new Joueur[]{});
+        JoueurComboBoxModel model1 = new JoueurComboBoxModel(new Joueur[]{});
+        JoueurComboBoxModel model2 = new JoueurComboBoxModel(new Joueur[]{});
         List<Joueur> list = j.getAllPlayers();
         for (int i=0; i<list.size(); i++)
         {
-            model.addElement(list.get(i));
+            model1.addElement(list.get(i));
+            model2.addElement(list.get(i));
         }
-        listej1.setModel(model);
-        listej2.setModel(model);
+        listej1.setModel(model1);
+        listej2.setModel(model2);
         
         
     }
