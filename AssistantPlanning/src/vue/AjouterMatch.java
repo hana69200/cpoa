@@ -7,10 +7,17 @@ package vue;
 
 import assistantplanning.AssistantPlanning;
 import baseDeDonnee.metier.Joueur;
+import baseDeDonnee.metier.Match;
+import baseDeDonnee.metier.Score;
 import baseDeDonnee.metierDAO.JoueurDAO;
+import baseDeDonnee.metierDAO.MatchDAO;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import util.comboBoxModel.JoueurComboBoxModel;
 
@@ -88,6 +95,11 @@ public class AjouterMatch extends javax.swing.JFrame {
         });
 
         mois.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Décembre" }));
+        mois.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                moisActionPerformed(evt);
+            }
+        });
 
         heures.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
         heures.setSelectedIndex(10);
@@ -190,7 +202,60 @@ public class AjouterMatch extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void validerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validerActionPerformed
-        this.dispose();
+        try {
+            MatchDAO mDAO = new MatchDAO(AssistantPlanning.getConnection());
+            JoueurDAO jDAO = new JoueurDAO(AssistantPlanning.getConnection());
+            Calendar c = new GregorianCalendar();
+           c.set(Calendar.DAY_OF_MONTH, Integer.parseInt((String) jour.getSelectedItem()));
+           c.set(Calendar.HOUR_OF_DAY, Integer.parseInt((String) heures.getSelectedItem()));
+           c.set(Calendar.MINUTE, Integer.parseInt((String) minute.getSelectedItem()));
+           c.set(Calendar.YEAR, 2020);
+           c.set(Calendar.SECOND, 0);
+           switch ((String) mois.getSelectedItem())
+           {
+               case "Janvier":
+                   c.set(Calendar.MONTH, 0);
+                   break;
+                   case "Février":
+                   c.set(Calendar.MONTH, 1);
+                   break;
+                   case "Mars":
+                   c.set(Calendar.MONTH, 2);
+                   break;
+                   case "Avril":
+                   c.set(Calendar.MONTH, 3);
+                   break;
+                   case "Mai":
+                   c.set(Calendar.MONTH, 4);
+                   break;
+                   case "Juin":
+                   c.set(Calendar.MONTH, 5);
+                   break;
+                   case "Juillet":
+                   c.set(Calendar.MONTH, 6);
+                   break;
+                   case "Aout":
+                   c.set(Calendar.MONTH, 7);
+                   break;
+                   case "Septembre":
+                   c.set(Calendar.MONTH, 8);
+                   break;
+                   case "Octobre":
+                   c.set(Calendar.MONTH, 9);
+                   break;
+                   case "Novembre":
+                   c.set(Calendar.MONTH, 10);
+                   break;
+                   case "Décembre":
+                   c.set(Calendar.MONTH, 11);
+                   break;  
+           }
+            // TODO set day heure
+                    mDAO.createMatch(new Match((Joueur) listej1.getSelectedItem(), (Joueur) listej2.getSelectedItem(), 1, c, new Score(0, 0)));
+                    this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(AjouterMatch.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_validerActionPerformed
 
     private void jourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jourActionPerformed
@@ -208,6 +273,10 @@ public class AjouterMatch extends javax.swing.JFrame {
     private void listej2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listej2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_listej2ActionPerformed
+
+    private void moisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moisActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_moisActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel date;
