@@ -1,5 +1,6 @@
 package baseDeDonnee.metierDAO;
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,7 +23,7 @@ public class MatchDAO extends DAO
 	/**
 	 * renvoie une liste des matchs d'un jour
 	 * 
-	 * @param date : le jour souhaité
+	 * @param date : le jour souhaitï¿½
 	 * @return List des matchs du jour
 	 * @throws SQLException
 	 */
@@ -50,7 +51,7 @@ public class MatchDAO extends DAO
 	}
 
 	/**
-	 * @param date : le jour et l'heure souhaité
+	 * @param date : le jour et l'heure souhaitï¿½
 	 * @return true si le cours est libre a l'heure souhaiter (avec la marge definis
 	 *         dans la classe Match)
 	 * @throws SQLException
