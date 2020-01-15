@@ -20,10 +20,9 @@ import vue.Main;
  */
 public class AssistantPlanning
 {
-
-	public static void main(String[] args)
-	{
-		try
+    public static Connection getConnection()
+    {
+        try
 		{
 			Class<?> c = Class.forName("com.mysql.cj.jdbc.Driver");
 			Driver pilote = (Driver) c.getDeclaredConstructor().newInstance();
@@ -36,7 +35,17 @@ public class AssistantPlanning
 			String nomConnexion = "p1607863";
 			String motDePasse = "270858";
 
-			Connection con = DriverManager.getConnection(conString, nomConnexion, motDePasse);
+			return DriverManager.getConnection(conString, nomConnexion, motDePasse);
+                        } catch (Exception e)
+		{
+			System.out.println(e.getMessage());
+                        return null;
+		}
+    }
+
+	public static void main(String[] args)
+	{
+		
 
 			SwingUtilities.invokeLater(new Runnable()
 			{
@@ -49,10 +58,6 @@ public class AssistantPlanning
 				}
 			});
 
-		} catch (Exception e)
-		{
-			System.out.println(e.getMessage());
-			// gestion des exceptions
-		}
+		
 	}
 }

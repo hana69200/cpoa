@@ -5,6 +5,10 @@
  */
 package vue;
 
+import com.mindfusion.common.DateTime;
+import com.mindfusion.scheduling.Calendar;
+import java.awt.BorderLayout;
+
 /**
  *
  * @author MarionM
@@ -16,7 +20,11 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
+        Planning c = new Planning();
+        this.jPanel2.add(c.getCalendar(), BorderLayout.CENTER);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
