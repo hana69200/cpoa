@@ -14,4 +14,11 @@ public class Arbitre extends Personne
 	{
 		return equipe;
 	}
+
+    @Override
+    public String toString() {
+        return "Equipe d'arbitre numéro " + equipe;
+    }
+        
+        
 }

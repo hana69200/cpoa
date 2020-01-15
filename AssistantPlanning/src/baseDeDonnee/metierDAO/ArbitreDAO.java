@@ -15,6 +15,18 @@ public class ArbitreDAO extends DAO
 	{
 		super(connection);
 	}
+        
+        public List<Integer> getEquipe() throws SQLException
+        {
+            List<Integer> liste = new ArrayList<Integer>();
+            String sql = "select distinct Equipe from Arbitre";
+            ResultSet rs = getRs(sql);
+		while (rs.next())
+		{
+			liste.add(new Integer(rs.getInt("Equipe")));
+		}
+            return liste;
+        }
 
 	/**
 	 * @return List de tout les arbitres
@@ -35,8 +47,8 @@ public class ArbitreDAO extends DAO
 	}
 
 	/**
-	 * @param ID : ID de l'arbitre recherché
-	 * @return arbitre si l'ID existe dans la base de données, null sinon
+	 * @param ID : ID de l'arbitre recherchï¿½
+	 * @return arbitre si l'ID existe dans la base de donnï¿½es, null sinon
 	 * @throws SQLException
 	 */
 	public Arbitre getArbitritorByID(int ID) throws SQLException

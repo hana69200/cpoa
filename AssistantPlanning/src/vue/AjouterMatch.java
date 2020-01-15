@@ -6,9 +6,11 @@
 package vue;
 
 import assistantplanning.AssistantPlanning;
+import baseDeDonnee.metier.Arbitre;
 import baseDeDonnee.metier.Joueur;
 import baseDeDonnee.metier.Match;
 import baseDeDonnee.metier.Score;
+import baseDeDonnee.metierDAO.ArbitreDAO;
 import baseDeDonnee.metierDAO.JoueurDAO;
 import baseDeDonnee.metierDAO.MatchDAO;
 import java.sql.Connection;
@@ -19,6 +21,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import util.comboBoxModel.ArbitreComboBoxModel;
 import util.comboBoxModel.JoueurComboBoxModel;
 
 /**
@@ -35,16 +38,24 @@ public class AjouterMatch extends javax.swing.JFrame {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         Connection c = AssistantPlanning.getConnection();
         JoueurDAO j = new JoueurDAO(c);
+        ArbitreDAO a = new ArbitreDAO(c);
         JoueurComboBoxModel model1 = new JoueurComboBoxModel(new Joueur[]{});
         JoueurComboBoxModel model2 = new JoueurComboBoxModel(new Joueur[]{});
+        ArbitreComboBoxModel model3 = new ArbitreComboBoxModel(new Integer[]{});
         List<Joueur> list = j.getAllPlayers();
         for (int i=0; i<list.size(); i++)
         {
             model1.addElement(list.get(i));
             model2.addElement(list.get(i));
         }
+        List<Integer> list2 = a.getEquipe();
+        for (int i=0; i<list2.size(); i++)
+        {
+            model3.addElement(list2.get(i));
+        }
         listej1.setModel(model1);
         listej2.setModel(model2);
+        arbitres.setModel(model3);
         
         
     }
@@ -71,6 +82,8 @@ public class AjouterMatch extends javax.swing.JFrame {
         j2 = new javax.swing.JLabel();
         listej1 = new javax.swing.JComboBox<>();
         listej2 = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        arbitres = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -127,6 +140,8 @@ public class AjouterMatch extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Equipe d'Arbitre :");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -140,14 +155,6 @@ public class AjouterMatch extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(j1)
-                            .addComponent(j2))
-                        .addGap(35, 35, 35)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(listej2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(listej1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(heure)
                             .addComponent(date))
                         .addGap(41, 41, 41)
@@ -157,7 +164,17 @@ public class AjouterMatch extends javax.swing.JFrame {
                         .addGap(54, 54, 54)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(mois, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(minute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(minute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(j1)
+                            .addComponent(j2)
+                            .addComponent(jLabel1))
+                        .addGap(35, 35, 35)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(arbitres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(listej2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(listej1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(109, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -178,11 +195,15 @@ public class AjouterMatch extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(j1)
                     .addComponent(listej1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addGap(39, 39, 39)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(j2)
                     .addComponent(listej2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(arbitres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
                 .addComponent(valider)
                 .addGap(34, 34, 34))
         );
@@ -209,7 +230,7 @@ public class AjouterMatch extends javax.swing.JFrame {
            c.set(Calendar.DAY_OF_MONTH, Integer.parseInt((String) jour.getSelectedItem()));
            c.set(Calendar.HOUR_OF_DAY, Integer.parseInt((String) heures.getSelectedItem()));
            c.set(Calendar.MINUTE, Integer.parseInt((String) minute.getSelectedItem()));
-           c.set(Calendar.YEAR, 2020);
+           c.set(Calendar.YEAR, 2030);
            c.set(Calendar.SECOND, 0);
            switch ((String) mois.getSelectedItem())
            {
@@ -250,8 +271,9 @@ public class AjouterMatch extends javax.swing.JFrame {
                    c.set(Calendar.MONTH, 11);
                    break;  
            }
-            // TODO set day heure
-                    mDAO.createMatch(new Match((Joueur) listej1.getSelectedItem(), (Joueur) listej2.getSelectedItem(), 1, c, new Score(0, 0)));
+                    Integer arbitreInte = (Integer) arbitres.getSelectedItem();
+                    int arbitreInt = arbitreInte.intValue();
+                    mDAO.createMatch(new Match((Joueur) listej1.getSelectedItem(), (Joueur) listej2.getSelectedItem(), arbitreInt, c, new Score(0, 0)));
                     this.dispose();
         } catch (SQLException ex) {
             Logger.getLogger(AjouterMatch.class.getName()).log(Level.SEVERE, null, ex);
@@ -279,11 +301,13 @@ public class AjouterMatch extends javax.swing.JFrame {
     }//GEN-LAST:event_moisActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<Integer> arbitres;
     private javax.swing.JLabel date;
     private javax.swing.JLabel heure;
     private javax.swing.JComboBox<String> heures;
     private javax.swing.JLabel j1;
     private javax.swing.JLabel j2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JComboBox<String> jour;
     private javax.swing.JComboBox<Joueur> listej1;
