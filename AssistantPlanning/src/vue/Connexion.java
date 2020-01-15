@@ -18,6 +18,7 @@ import java.util.Hashtable;
  * @author MarionM
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 public class Connexion extends javax.swing.JFrame {
 
     /**
@@ -215,6 +216,8 @@ public class Connexion extends javax.swing.JFrame {
     private void ValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValiderActionPerformed
         
 =======
+=======
+>>>>>>> aeb3a5d4886879421934882b76bd4b4355dbd4df
 public class Connexion extends javax.swing.JFrame
 {
 
@@ -426,6 +429,9 @@ public class Connexion extends javax.swing.JFrame
 	private void ValiderActionPerformed(java.awt.event.ActionEvent evt)
 	{// GEN-FIRST:event_ValiderActionPerformed
 
+<<<<<<< HEAD
+>>>>>>> aeb3a5d4886879421934882b76bd4b4355dbd4df
+=======
 >>>>>>> aeb3a5d4886879421934882b76bd4b4355dbd4df
 		try
 		{

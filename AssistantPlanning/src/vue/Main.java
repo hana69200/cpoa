@@ -14,6 +14,7 @@ import java.awt.BorderLayout;
  * @author MarionM
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 public class Main extends javax.swing.JFrame {
 
     /**
@@ -182,6 +183,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel name;
     // End of variables declaration//GEN-END:variables
 =======
+=======
+>>>>>>> aeb3a5d4886879421934882b76bd4b4355dbd4df
 public class Main extends javax.swing.JFrame
 {
 
@@ -352,5 +355,8 @@ public class Main extends javax.swing.JFrame
 	private javax.swing.JPanel jPanel3;
 	private javax.swing.JLabel name;
 	// End of variables declaration//GEN-END:variables
+<<<<<<< HEAD
+>>>>>>> aeb3a5d4886879421934882b76bd4b4355dbd4df
+=======
 >>>>>>> aeb3a5d4886879421934882b76bd4b4355dbd4df
 }
