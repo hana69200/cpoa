@@ -8,21 +8,38 @@ package vue;
 import com.mindfusion.common.DateTime;
 import com.mindfusion.scheduling.Calendar;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import javax.swing.JPanel;
 
 /**
  *
  * @author MarionM
  */
 public class Main extends javax.swing.JFrame {
-
+Calendar calendar;
+JPanel J2 ;
     /**
      * Creates new form Main
      */
     public Main() {
         initComponents();
-        Planning c = new Planning();
-        this.jPanel2.add(c.getCalendar(), BorderLayout.CENTER);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        /**
+        calendar = new Calendar();
+        J2 = new JPanel();
+        calendar.beginInit();
+        calendar.getTimetableSettings().getDates().clear();
+        for (int i = 0; i < 5; i++)
+            calendar.getTimetableSettings().getDates().add(DateTime.today().addDays(i));
+        calendar.endInit();
+        calendar.setSize(1000,1000);
+        J2.setLocation(0,66);
+        J2.setSize(1000,1000);
+        J2.setBackground(Color.red);
+        J2.add(calendar, BorderLayout.CENTER);
+        J2.setVisible(true);
+        this.add(J2);
+**/
     }
 
 
@@ -38,7 +55,6 @@ public class Main extends javax.swing.JFrame {
         header = new javax.swing.JPanel();
         name = new javax.swing.JLabel();
         connexion = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -65,7 +81,7 @@ public class Main extends javax.swing.JFrame {
         headerLayout.setHorizontalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(229, Short.MAX_VALUE)
                 .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(110, 110, 110)
                 .addComponent(connexion)
@@ -79,20 +95,6 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(name, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                     .addComponent(connexion))
                 .addContainerGap())
-        );
-
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setPreferredSize(new java.awt.Dimension(700, 390));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1000, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 736, Short.MAX_VALUE)
         );
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
@@ -114,7 +116,6 @@ public class Main extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,8 +123,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 736, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(700, Short.MAX_VALUE))
         );
 
         pack();
@@ -176,7 +176,6 @@ public class Main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton connexion;
     private javax.swing.JPanel header;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel name;
     // End of variables declaration//GEN-END:variables
