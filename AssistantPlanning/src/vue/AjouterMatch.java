@@ -6,25 +6,36 @@
 package vue;
 
 import assistantplanning.AssistantPlanning;
+import baseDeDonnee.metier.Joueur;
 import baseDeDonnee.metierDAO.JoueurDAO;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 import javax.swing.JFrame;
+import util.comboBoxModel.JoueurComboBoxModel;
 
 /**
  *
  * @author MarionM
  */
 public class AjouterMatch extends javax.swing.JFrame {
-        Connection c = AssistantPlanning.getConnection();
-        JoueurDAO j = new JoueurDAO(c);
+        
     /**
      * Creates new form AjouterMatch
      */
     public AjouterMatch() throws SQLException {
         initComponents();
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        
+        Connection c = AssistantPlanning.getConnection();
+        JoueurDAO j = new JoueurDAO(c);
+        JoueurComboBoxModel model = new JoueurComboBoxModel(new Joueur[]{});
+        List<Joueur> list = j.getAllPlayers();
+        for (int i=0; i<list.size(); i++)
+        {
+            model.addElement(list.get(i));
+        }
+        listej1.setModel(model);
+        listej2.setModel(model);
         
         
     }
@@ -90,7 +101,17 @@ public class AjouterMatch extends javax.swing.JFrame {
 
         j2.setText("Joueur 2 :");
 
-        listej2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        listej1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listej1ActionPerformed(evt);
+            }
+        });
+
+        listej2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listej2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -178,6 +199,14 @@ public class AjouterMatch extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_minuteActionPerformed
 
+    private void listej1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listej1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_listej1ActionPerformed
+
+    private void listej2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listej2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_listej2ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel date;
     private javax.swing.JLabel heure;
@@ -186,8 +215,8 @@ public class AjouterMatch extends javax.swing.JFrame {
     private javax.swing.JLabel j2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JComboBox<String> jour;
-    private javax.swing.JComboBox<String> listej1;
-    private javax.swing.JComboBox<String> listej2;
+    private javax.swing.JComboBox<Joueur> listej1;
+    private javax.swing.JComboBox<Joueur> listej2;
     private javax.swing.JComboBox<String> minute;
     private javax.swing.JComboBox<String> mois;
     private javax.swing.JButton valider;

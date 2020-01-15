@@ -11,7 +11,8 @@ public class Joueur extends Personne
 	@Override
 	public String toString()
 	{
-		return "Joueur [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", nationalite=" + nationalite + "]";
+		//return "Joueur [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", nationalite=" + nationalite + "]";
+                return prenom + " " + nom;
 	}
 
 	@Override
