@@ -17,6 +17,8 @@ import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author MarionM
@@ -29,6 +31,7 @@ public class AjCours extends javax.swing.JFrame {
     public AjCours() throws SQLException {
         initComponents();
         jLabel1.setVisible(false);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
           
     }
 
