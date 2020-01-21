@@ -35,7 +35,7 @@ public class JoueurDAO extends DAO
 	}
 
 	/**
-	 * @param ID : ID du joueur recherché
+	 * @param ID : ID du joueur recherchï¿½
 	 * @return le Joueur s'il existe, null sinon
 	 * @throws SQLException
 	 */
@@ -51,4 +51,17 @@ public class JoueurDAO extends DAO
 
 		return j;
 	}
+        
+        public int getIDbyName(String nom) throws SQLException
+	{
+		String sql = "select * from Joueur where Nom = '" + nom + "'";
+		ResultSet rs = getRs(sql);
+		Joueur j = null;
+		if (rs.next())
+		{
+			j = new Joueur(rs.getInt("ID"), rs.getString("Nom"), rs.getString("Prenom"), rs.getInt("Nationalite"));
+		}
+		return j.getId();
+	}
+        
 }

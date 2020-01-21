@@ -51,6 +51,7 @@ public class Modification extends javax.swing.JFrame {
         resultat = new javax.swing.JButton();
         match = new javax.swing.JButton();
         reserver = new javax.swing.JButton();
+        calendarView1 = new vue.CalendarView();
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -227,6 +228,7 @@ public class Modification extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(resultat, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addComponent(calendarView1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -237,7 +239,9 @@ public class Modification extends javax.swing.JFrame {
                     .addComponent(match, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(resultat, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(reserver, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(672, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(calendarView1, javax.swing.GroupLayout.DEFAULT_SIZE, 659, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -272,7 +276,13 @@ public class Modification extends javax.swing.JFrame {
     }//GEN-LAST:event_modifActionPerformed
 
     private void reserverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserverActionPerformed
-        // TODO add your handling code here:
+        try {
+            AjCours aj = new AjCours();
+            aj.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Modification.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_reserverActionPerformed
 
     private void resultatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultatActionPerformed
@@ -330,6 +340,7 @@ public class Modification extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private vue.CalendarView calendarView1;
     private javax.swing.JPanel header;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;

@@ -32,6 +32,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="jPanel3" max="32767" attributes="0"/>
           <Component id="header" alignment="0" pref="1000" max="32767" attributes="0"/>
+          <Component id="calendarView1" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -40,7 +41,9 @@
               <Component id="header" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
               <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="700" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+              <Component id="calendarView1" pref="735" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -119,5 +122,7 @@
         </DimensionLayout>
       </Layout>
     </Container>
+    <Component class="vue.CalendarView" name="calendarView1">
+    </Component>
   </SubComponents>
 </Form>

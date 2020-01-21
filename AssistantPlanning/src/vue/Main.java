@@ -9,37 +9,23 @@ import com.mindfusion.common.DateTime;
 import com.mindfusion.scheduling.Calendar;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 /**
  *
  * @author MarionM
  */
 public class Main extends javax.swing.JFrame {
-Calendar calendar;
-JPanel J2 ;
+
     /**
      * Creates new form Main
      */
     public Main() {
         initComponents();
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        /**
-        calendar = new Calendar();
-        J2 = new JPanel();
-        calendar.beginInit();
-        calendar.getTimetableSettings().getDates().clear();
-        for (int i = 0; i < 5; i++)
-            calendar.getTimetableSettings().getDates().add(DateTime.today().addDays(i));
-        calendar.endInit();
-        calendar.setSize(1000,1000);
-        J2.setLocation(0,66);
-        J2.setSize(1000,1000);
-        J2.setBackground(Color.red);
-        J2.add(calendar, BorderLayout.CENTER);
-        J2.setVisible(true);
-        this.add(J2);
-**/
+        
+
     }
 
 
@@ -56,6 +42,7 @@ JPanel J2 ;
         name = new javax.swing.JLabel();
         connexion = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
+        calendarView1 = new vue.CalendarView();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
@@ -116,6 +103,7 @@ JPanel J2 ;
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+            .addComponent(calendarView1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,7 +111,9 @@ JPanel J2 ;
                 .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(700, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
+                .addComponent(calendarView1, javax.swing.GroupLayout.DEFAULT_SIZE, 735, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
 
         pack();
@@ -174,6 +164,7 @@ JPanel J2 ;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private vue.CalendarView calendarView1;
     private javax.swing.JButton connexion;
     private javax.swing.JPanel header;
     private javax.swing.JPanel jPanel3;

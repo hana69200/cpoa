@@ -11,6 +11,8 @@ import java.util.List;
 
 import baseDeDonnee.metier.Entrainement;
 import baseDeDonnee.metier.Joueur;
+import baseDeDonnee.metier.Match;
+import java.sql.PreparedStatement;
 
 public class EntrainementDAO extends DAO
 {
@@ -23,7 +25,7 @@ public class EntrainementDAO extends DAO
 	/**
 	 * renvoie une liste des entrainements d'un jour
 	 * 
-	 * @param date : le jour souhaité
+	 * @param date : le jour souhaitï¿½
 	 * @return List des entrainements du jour
 	 * @throws SQLException
 	 */
@@ -48,10 +50,10 @@ public class EntrainementDAO extends DAO
 	}
 
 	/**
-	 * renvoie si un joueur est dispo a une heure et un jours donnée
+	 * renvoie si un joueur est dispo a une heure et un jours donnï¿½e
 	 * 
 	 * @param joueur : le joueur
-	 * @param date   : jour et heure souhaités
+	 * @param date   : jour et heure souhaitï¿½s
 	 * @return true si dispo, false sinon
 	 * @throws SQLException
 	 */
@@ -69,10 +71,10 @@ public class EntrainementDAO extends DAO
 	}
 
 	/**
-	 * renvoie si un cours est dispo a une heure et un jours donnée
+	 * renvoie si un cours est dispo a une heure et un jours donnï¿½e
 	 * 
 	 * @param numero : numero du cours
-	 * @param date   : jour et heure souhaités
+	 * @param date   : jour et heure souhaitï¿½s
 	 * @return true si dispo, false sinon
 	 * @throws SQLException
 	 */
@@ -90,7 +92,7 @@ public class EntrainementDAO extends DAO
 	}
 
 	/**
-	 * Renvoie la liste des cours cours disponibles à la date et l'heure spécifié
+	 * Renvoie la liste des cours cours disponibles ï¿½ la date et l'heure spï¿½cifiï¿½
 	 * 
 	 * @param date : date et heure
 	 * @return liste des cours disponible
@@ -114,5 +116,17 @@ public class EntrainementDAO extends DAO
 		}
 
 		return list;
+	}
+        
+        public void createEntrainement(Entrainement e) throws SQLException
+	{
+		String sql = "INSERT INTO Entrainement (Joueur, Date, numerosCours) VALUES "
+				+ "(? , ?, ?)";
+		PreparedStatement stm = getConnection().prepareStatement(sql);
+		stm.setInt(1, e.getJoueur().getId());
+		stm.setTimestamp(2, new java.sql.Timestamp(e.getDate().getTime().getTime()));
+		stm.setInt(3, e.getNumeroCours()) ;
+
+		stm.execute();
 	}
 }

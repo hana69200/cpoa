@@ -311,6 +311,7 @@
                   <Component id="resultat" min="-2" pref="245" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
+              <Component id="calendarView1" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -323,7 +324,9 @@
                       <Component id="resultat" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                       <Component id="reserver" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="672" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="calendarView1" pref="659" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -360,6 +363,8 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reserverActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="vue.CalendarView" name="calendarView1">
         </Component>
       </SubComponents>
     </Container>

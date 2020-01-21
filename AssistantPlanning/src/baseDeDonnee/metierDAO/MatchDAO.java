@@ -22,7 +22,7 @@ public class MatchDAO extends DAO
 	/**
 	 * renvoie une liste des matchs d'un jour
 	 * 
-	 * @param date : le jour souhaité
+	 * @param date : le jour souhaitï¿½
 	 * @return List des matchs du jour
 	 * @throws SQLException
 	 */
@@ -41,7 +41,7 @@ public class MatchDAO extends DAO
 		while (rs.next())
 		{
 			cal = this.getDateTime(rs, "DateDebut");
-			matchs.add(new Match(jDAO.getPlayerByID(rs.getInt("Participant1")),
+			matchs.add(new Match(0,jDAO.getPlayerByID(rs.getInt("Participant1")),
 					jDAO.getPlayerByID(rs.getInt("Participant2")), rs.getInt("equipeArbitre"), cal,
 					new Score(rs.getString("Score"))));
 		}
@@ -50,7 +50,7 @@ public class MatchDAO extends DAO
 	}
 
 	/**
-	 * @param date : le jour et l'heure souhaité
+	 * @param date : le jour et l'heure souhaitï¿½
 	 * @return true si le cours est libre a l'heure souhaiter (avec la marge definis
 	 *         dans la classe Match)
 	 * @throws SQLException
@@ -69,9 +69,9 @@ public class MatchDAO extends DAO
 	}
 
 	/**
-	 * ajoute un match en base de données
+	 * ajoute un match en base de donnï¿½es
 	 * 
-	 * @param match : le match a ajouter en base de données
+	 * @param match : le match a ajouter en base de donnï¿½es
 	 * @throws SQLException
 	 */
 	public void createMatch(Match match) throws SQLException
@@ -89,9 +89,9 @@ public class MatchDAO extends DAO
 	}
 
 	/**
-	 * supprime un match dans la base de données
+	 * supprime un match dans la base de donnï¿½es
 	 * 
-	 * @param match : le match a supprimé en base de données
+	 * @param match : le match a supprimï¿½ en base de donnï¿½es
 	 * @throws SQLException
 	 */
 	public void deleteMatch(Match match) throws SQLException
@@ -104,4 +104,28 @@ public class MatchDAO extends DAO
 
 		stm.execute();
 	}
+        
+        public ArrayList<Match> getMatchByMonth(int year, int month) throws SQLException{
+            String sql = "select * from MatchTournois where YEAR(DateDebut) = "+ year +" and MONTH(DateDebut) = "+ month +" order by DateDebut";
+
+            ResultSet rs = getRs(sql);
+            ArrayList<Match> matchs = new ArrayList<Match>();
+            JoueurDAO jDAO = new JoueurDAO(this.getConnection());
+            Calendar cal = new GregorianCalendar();
+            
+            while (rs.next()){
+                cal = this.getDateTime(rs, "DateDebut");
+                Score s;
+                String t = rs.getString("Score");
+                if(rs.getString("Score") == null){
+                    s = null;
+                } else {
+                    s = new Score(rs.getString("Score"));
+                }
+                matchs.add(new Match(0,jDAO.getPlayerByID(rs.getInt("Participant1")),
+					jDAO.getPlayerByID(rs.getInt("Participant2")), rs.getInt("equipeArbitre"),cal,
+					s));
+            }
+            return matchs;
+        }
 }

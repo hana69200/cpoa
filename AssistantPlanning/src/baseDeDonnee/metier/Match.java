@@ -8,7 +8,7 @@ public class Match extends Appointment
 {
 
 	/**
-	 * durée d'un match en minutes
+	 * durï¿½e d'un match en minutes
 	 **/
 	public static int DUREE_MATCH = 30;
 
@@ -17,22 +17,24 @@ public class Match extends Appointment
 	private int equipeArbitre;
 	private Calendar date;
 	private Score score;
-	// TODOLATER equipes ramasseurs à ajouter
+        private int idMatch;
+	// TODOLATER equipes ramasseurs ï¿½ ajouter
 
 	/**
 	 * @param participant1  : 1er participant
-	 * @param participant2  : 2è participant
+	 * @param participant2  : 2ï¿½ participant
 	 * @param equipeArbitre : equipe arbitrant le match
-	 * @param date          : date et heure de début du match
+	 * @param date          : date et heure de dï¿½but du match
 	 * @param score         : score final du match
 	 */
-	public Match(Joueur participant1, Joueur participant2, int equipeArbitre, Calendar date, Score score)
+	public Match( int id,Joueur participant1, Joueur participant2, int equipeArbitre, Calendar date, Score score)
 	{
 		this.participant1 = participant1;
 		this.participant2 = participant2;
 		this.equipeArbitre = equipeArbitre;
 		this.date = date;
 		this.score = score;
+                this.idMatch = id;
 	}
 
 	public Joueur getParticipant1()
@@ -60,6 +62,13 @@ public class Match extends Appointment
 		return score;
 	}
 
+
+        public int getIdMatch() {
+            return idMatch;
+        }
+        
+        
+
 	@Override
 	public int hashCode()
 	{
@@ -70,6 +79,7 @@ public class Match extends Appointment
 		result = prime * result + ((participant1 == null) ? 0 : participant1.hashCode());
 		result = prime * result + ((participant2 == null) ? 0 : participant2.hashCode());
 		result = prime * result + ((score == null) ? 0 : score.hashCode());
+                result = prime * result + idMatch ;
 		return result;
 	}
 
@@ -109,7 +119,17 @@ public class Match extends Appointment
 				return false;
 		} else if (!score.equals(other.score))
 			return false;
+                if (idMatch != other.idMatch)
+			return false;
 		return true;
 	}
+
+    public void setIdMatch(int idMatch) {
+        this.idMatch = idMatch;
+    }
+
+    
+        
+        
 
 }

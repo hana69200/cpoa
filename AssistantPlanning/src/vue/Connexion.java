@@ -5,6 +5,7 @@
  */
 package vue;
 
+import assistantplanning.AssistantPlanning;
 import baseDeDonnee.metier.Utilisateur;
 import baseDeDonnee.metierDAO.JoueurDAO;
 import baseDeDonnee.metierDAO.UtilisateurDAO;
@@ -48,7 +49,6 @@ public class Connexion extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1000, 800));
 
         header.setBackground(new java.awt.Color(255, 255, 255));
         header.setPreferredSize(new java.awt.Dimension(408, 60));
@@ -112,6 +112,11 @@ public class Connexion extends javax.swing.JFrame {
         jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jPasswordField1ActionPerformed(evt);
+            }
+        });
+        jPasswordField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPasswordField1KeyPressed(evt);
             }
         });
 
@@ -216,20 +221,9 @@ public class Connexion extends javax.swing.JFrame {
         
 		try
 		{
-			Class<?> c = Class.forName("com.mysql.cj.jdbc.Driver");
-			Driver pilote = (Driver) c.getDeclaredConstructor().newInstance();
-			DriverManager.registerDriver(pilote);
-			final String protocole = "jdbc:mysql:";
-			String ip = "iutdoua-web.univ-lyon1.fr";
-			String port = "3306";
-			String nomBase = "p1607863";
-			String conString = protocole + "//" + ip + ":" + port + "/" + nomBase;
-			String nomConnexion = "p1607863";
-			String motDePasse = "270858";
+                    Connection c = AssistantPlanning.getConnection();
 
-			Connection con = DriverManager.getConnection(conString, nomConnexion, motDePasse);
-
-			UtilisateurDAO u = new UtilisateurDAO(con);
+			UtilisateurDAO u = new UtilisateurDAO(c);
                         String myPass=String.valueOf(jPasswordField1.getPassword());
 			
                         if(!u.isUserOK(jTextField1.getText())){
@@ -241,20 +235,25 @@ public class Connexion extends javax.swing.JFrame {
                                 jLabel1.setText("Le mot de passe est erroné");
                             } else {
                                 jLabel1.setText("");
+                                AssistantPlanning.idUser = u.getJoueur(jTextField1.getText()).getId();
+                            this.setVisible(false);
+                            Modification m = new Modification();
+                            m.setVisible(true);
                             }
                         }
                         
-                        if(u.isUserOK(jTextField1.getText()) && u.isPasswordOK(jTextField1.getText(), myPass)){
+                        /*if(u.isUserOK(jTextField1.getText()) && u.isPasswordOK(jTextField1.getText(), myPass)){
                             Hashtable<String,Boolean> autorisation = u.getAutorisation(jTextField1.getText());
                             autorisation.get("");
-                            
+                            JoueurDAO jd = new JoueurDAO(c);
+                            AssistantPlanning.idUser = jd.getIDbyName(jTextField1.getText());
                             this.setVisible(false);
                             Modification m = new Modification();
                             m.setVisible(true);
                             
                             
                             
-                        }
+                        }*/
                         
                         
                         
@@ -263,6 +262,7 @@ public class Connexion extends javax.swing.JFrame {
 			System.out.println(e.getMessage());
 			// gestion des exceptions
 		}
+
         
         
     }//GEN-LAST:event_ValiderActionPerformed
@@ -292,6 +292,12 @@ public class Connexion extends javax.swing.JFrame {
         if(myPass.contentEquals("exemple"))
             jPasswordField1.setText("");
     }//GEN-LAST:event_jPasswordField1FocusGained
+
+    private void jPasswordField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordField1KeyPressed
+        if (evt.getKeyCode() == 10){
+            Valider.doClick();
+        }
+    }//GEN-LAST:event_jPasswordField1KeyPressed
 
     /**
      * @param args the command line arguments
