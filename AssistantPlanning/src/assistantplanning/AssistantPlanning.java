@@ -11,8 +11,6 @@ import java.sql.DriverManager;
 
 import javax.swing.SwingUtilities;
 
-import baseDeDonnee.metierDAO.JoueurDAO;
-
 import vue.Main;
 
 /**

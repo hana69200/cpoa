@@ -4,18 +4,18 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.GregorianCalendar;
-import java.util.List;
+//import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import baseDeDonnee.metier.Joueur;
-import baseDeDonnee.metier.Match;
-import baseDeDonnee.metier.Score;
-import baseDeDonnee.metierDAO.JoueurDAO;
+//import baseDeDonnee.metier.Joueur;
+//import baseDeDonnee.metier.Match;
+//import baseDeDonnee.metier.Score;
+//import baseDeDonnee.metierDAO.JoueurDAO;
 import baseDeDonnee.metierDAO.MatchDAO;
 
 class TestMatchDAO extends TestSup
@@ -29,7 +29,7 @@ class TestMatchDAO extends TestSup
 	void tearDown() throws Exception
 	{
 	}
-
+/*
 	@Test
 	void testGetMatchsByDay() throws ClassNotFoundException, InstantiationException, IllegalAccessException,
 			SQLException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException
@@ -50,7 +50,7 @@ class TestMatchDAO extends TestSup
 		assertEquals(t1, l1);
 		assertEquals(t2, l2);
 	}
-
+*/
 	@Test
 	void testIsCoursDispo() throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException,
 			IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException
@@ -68,7 +68,7 @@ class TestMatchDAO extends TestSup
 		assertFalse(mDAO.isCoursDispo(d4));
 		assertTrue(mDAO.isCoursDispo(d5));
 	}
-
+/*
 	@Test
 	void testCreateMatch() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException,
 			IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException
@@ -89,7 +89,8 @@ class TestMatchDAO extends TestSup
 
 		assertEquals(l1, t1);
 	}
-
+*/
+	/*
 	@Test
 	void testDeleteMatch() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException,
 			IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException
@@ -118,5 +119,5 @@ class TestMatchDAO extends TestSup
 
 		assertEquals(l1, t1);
 	}
-
+*/
 }

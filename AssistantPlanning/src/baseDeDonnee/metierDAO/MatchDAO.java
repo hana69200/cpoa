@@ -116,7 +116,6 @@ public class MatchDAO extends DAO
             while (rs.next()){
                 cal = this.getDateTime(rs, "DateDebut");
                 Score s;
-                String t = rs.getString("Score");
                 if(rs.getString("Score") == null){
                     s = null;
                 } else {

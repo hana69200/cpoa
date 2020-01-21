@@ -11,7 +11,6 @@ import java.util.List;
 
 import baseDeDonnee.metier.Entrainement;
 import baseDeDonnee.metier.Joueur;
-import baseDeDonnee.metier.Match;
 import java.sql.PreparedStatement;
 
 public class EntrainementDAO extends DAO

@@ -5,7 +5,6 @@
  */
 package util.comboBoxModel;
 
-import baseDeDonnee.metier.Arbitre;
 import javax.swing.DefaultComboBoxModel;
 
 /**
