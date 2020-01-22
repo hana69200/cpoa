@@ -12,16 +12,19 @@ const BD_PWD = '367876';
 const LANG ='FR-fr';
 
 //Connexion
+//constante de test login
 const LOGADMIN='kiki';
+// contante password cryptee
 const MDPADMIN='$2y$10$va9WuT947Hbgc9HYKZSZ7.7E1uXgLmW1AZKqzMzTcy4M9LCt0nIbu';
 const ADMIN='administrateur';
 const MDP='admin';
 
+//login administrateur
 const LOGADMIN2='admin';
 const MDPADMIN2='$2y$10$8mOKCUiyOvV5iv18Iv6nKuvc5n9Gtk1.UTg3Cp77qb2k/KmczsYqO';
 
 // Paramètres du site : nom de l'auteur ou des auteurs
-const AUTEUR = '';
+const AUTEUR = 'HMB';
 
 //dossiers racines du site
 define('PATH_CONTROLLERS','./controllers/c_');
