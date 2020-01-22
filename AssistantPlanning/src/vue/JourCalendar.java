@@ -7,8 +7,11 @@ package vue;
 
 import baseDeDonnee.metier.Match;
 import java.awt.Dimension;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
@@ -18,8 +21,17 @@ import javax.swing.SwingConstants;
  */
 public class JourCalendar extends javax.swing.JPanel {
 
+    private CalendarView winMere;
+    public void actuMatch()
+    {
+        try {
+            winMere.RefreshDate();
+        } catch (SQLException ex) {
+            Logger.getLogger(JourCalendar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     private void modifActionPerformed(java.awt.event.ActionEvent evt, Match m) {                                       
-        Modifier c = new Modifier(m);
+        Modifier c = new Modifier(m, this);
         c.setVisible(true);
     }
     /**
@@ -28,7 +40,8 @@ public class JourCalendar extends javax.swing.JPanel {
      * @param jourSemaine
      * @param listMatch
      */
-    public JourCalendar(Integer jour, String jourSemaine, ArrayList<Match> listMatch) {
+    public JourCalendar(Integer jour, String jourSemaine, ArrayList<Match> listMatch, CalendarView win) {
+        winMere = win;
         initComponents();
         if(jour < 10){
             lblJour.setText("0" + String.valueOf(jour));

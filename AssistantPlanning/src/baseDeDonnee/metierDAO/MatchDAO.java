@@ -96,11 +96,10 @@ public class MatchDAO extends DAO
 	 */
 	public void deleteMatch(Match match) throws SQLException
 	{
-		String sql = "delete from MatchTournois where Participant1 = ? and Participant2 = ? and DateDebut = ?";
+		//String sql = "delete from MatchTournois where Participant1 = ? and Participant2 = ? and DateDebut = ?";
+                String sql = "delete from MatchTournois where ID = ?";
 		PreparedStatement stm = getConnection().prepareStatement(sql);
-		stm.setInt(1, match.getParticipant1().getId());
-		stm.setInt(2, match.getParticipant2().getId());
-		stm.setTimestamp(3, new java.sql.Timestamp(match.getDate().getTime().getTime()));
+		stm.setInt(1, match.getIdMatch());
 
 		stm.execute();
 	}
@@ -121,7 +120,7 @@ public class MatchDAO extends DAO
                 } else {
                     s = new Score(rs.getString("Score"));
                 }
-                matchs.add(new Match(0,jDAO.getPlayerByID(rs.getInt("Participant1")),
+                matchs.add(new Match(rs.getInt("ID"),jDAO.getPlayerByID(rs.getInt("Participant1")),
 					jDAO.getPlayerByID(rs.getInt("Participant2")), rs.getInt("equipeArbitre"),cal,
 					s));
             }

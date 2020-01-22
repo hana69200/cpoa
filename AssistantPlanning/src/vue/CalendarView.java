@@ -60,7 +60,7 @@ public class CalendarView extends javax.swing.JPanel {
         Integer totalHeight = 0;       
         for(int i = 0; i < maxJoursMois; i++){
             
-            JourCalendar jc = new JourCalendar(i + 1, joursSemaine[firstDay], ListMatchsMois.get(i));
+            JourCalendar jc = new JourCalendar(i + 1, joursSemaine[firstDay], ListMatchsMois.get(i), this);
             panelJours.add(jc);
             
             totalHeight += 82;
