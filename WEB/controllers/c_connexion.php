@@ -23,15 +23,16 @@ require_once(PATH_ENTITY . 'User.php');
 	}
 }*/
 
-
+// si champ identifiant existe
 if (isset($_POST['identifiant']))
 {
+    //on stocke
 	$identifiant = htmlspecialchars($_POST['identifiant']);
-	//si l'utilisateur est l'administrateur alors variable session admin passe a true
 	
 
 		 $uDao = new UserDAO();
 		$userBD = $uDao->getUserByUsername($identifiant);
+		// si l'identifiant recuperer n'existe pas dans la bd 
 		if (!$userBD) $alert=choixAlert('erreur_id');
 		if (!isset($_POST['password']) || $_POST['password']!=$userBD->getPassword()) $alert = choixAlert('erreur_mdp');
 		else {
