@@ -8,8 +8,10 @@ if (!$_SESSION['logged']) {
 }
 
 if(isset($_GET['id'])){
+    //on creer un objet vip dao pour pouvoir appeler les methodes presente dans ce model
 	$vipDAO = new VIPDAO();
 	$vip = $vipDAO -> getById(htmlspecialchars($_GET['id']));
+	//on creer un objet photo dao afin que avec l'id recupere on peut recuperer la photo associe au VIPID
 	$photoDAO= new PhotoDAO();
 	$photo= $photoDAO ->getPhoto(htmlspecialchars($_GET['id']));
 
