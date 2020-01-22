@@ -27,6 +27,9 @@ class PhotoDAO extends DAO {
 
 
 	// Retourne un tableau d'images ou null
+	
+	
+	//
    public function getPhoto($id)
 		//retourne un tableau d'image
 	{
