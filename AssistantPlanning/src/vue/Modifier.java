@@ -41,6 +41,13 @@ public class Modifier extends javax.swing.JFrame {
         }
         s1.setModel(modS1);
         s2.setModel(modS2);
+        
+        s1.setSelectedIndex(0);
+        s2.setSelectedIndex(0);
+        jour.setSelectedIndex(m.getDate().get(Calendar.DAY_OF_MONTH)-1);
+        mois.setSelectedIndex(m.getDate().get(Calendar.MONTH));
+        heures.setSelectedIndex(m.getDate().get(Calendar.HOUR_OF_DAY));
+        minute.setSelectedIndex(m.getDate().get(Calendar.MINUTE));
     }
 
     /**
