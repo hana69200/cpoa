@@ -15,7 +15,7 @@
 	
 	<div class="contact-form">
 		<img src="<?= PATH_LOGO2 ?>" alt="" class="avatar">
-		<h2>S'inscrire </h2>
+		<h2>S'inscrire </h2><br/>
 		<p> Username </p>
 		<input type="username" placeholder="Enter Username" name="id">
 		<p> Password </p>
