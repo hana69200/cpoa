@@ -46,7 +46,6 @@ public class Modification extends javax.swing.JFrame {
         retour = new javax.swing.JButton();
         noir = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        resultat = new javax.swing.JButton();
         match = new javax.swing.JButton();
         reserver = new javax.swing.JButton();
         try
@@ -192,13 +191,6 @@ public class Modification extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(1000, 800));
 
-        resultat.setText("Ajouter un résultat");
-        resultat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                resultatActionPerformed(evt);
-            }
-        });
-
         match.setText("Ajouter un Match");
         match.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -220,10 +212,8 @@ public class Modification extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(match, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 515, Short.MAX_VALUE)
                 .addComponent(reserver, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
-                .addComponent(resultat, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addComponent(calendarView1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -233,7 +223,6 @@ public class Modification extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(match, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(resultat, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(reserver, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(calendarView1, javax.swing.GroupLayout.PREFERRED_SIZE, 665, Short.MAX_VALUE)
@@ -277,10 +266,6 @@ public class Modification extends javax.swing.JFrame {
         
     }//GEN-LAST:event_reserverActionPerformed
 
-    private void resultatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultatActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_resultatActionPerformed
-
     private void matchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matchActionPerformed
 
         try {
@@ -322,7 +307,6 @@ public class Modification extends javax.swing.JFrame {
     private javax.swing.JLabel name;
     private javax.swing.JPanel noir;
     private javax.swing.JButton reserver;
-    private javax.swing.JButton resultat;
     private javax.swing.JButton retour;
     // End of variables declaration//GEN-END:variables
 }

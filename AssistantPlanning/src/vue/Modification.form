@@ -303,10 +303,8 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="match" min="-2" pref="245" max="-2" attributes="0"/>
-                  <EmptySpace pref="135" max="32767" attributes="0"/>
+                  <EmptySpace pref="515" max="32767" attributes="0"/>
                   <Component id="reserver" min="-2" pref="245" max="-2" attributes="0"/>
-                  <EmptySpace pref="135" max="32767" attributes="0"/>
-                  <Component id="resultat" min="-2" pref="245" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
               <Component id="calendarView1" alignment="0" max="32767" attributes="0"/>
@@ -318,7 +316,6 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="match" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                      <Component id="resultat" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                       <Component id="reserver" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -329,14 +326,6 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="resultat">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Ajouter un r&#xe9;sultat"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="resultatActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JButton" name="match">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ajouter un Match"/>
