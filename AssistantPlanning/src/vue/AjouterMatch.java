@@ -29,11 +29,12 @@ import util.comboBoxModel.JoueurComboBoxModel;
  * @author MarionM
  */
 public class AjouterMatch extends javax.swing.JFrame {
-        
+        private Modification winMere;
     /**
      * Creates new form AjouterMatch
      */
-    public AjouterMatch() throws SQLException {
+    public AjouterMatch(Modification win) throws SQLException {
+        winMere = win;
         initComponents();
         jLabel2.setVisible(false);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -290,6 +291,7 @@ public class AjouterMatch extends javax.swing.JFrame {
                     Integer arbitreInte = (Integer) arbitres.getSelectedItem();
                     int arbitreInt = arbitreInte.intValue();
                     mDAO.createMatch(new Match(0,(Joueur) listej1.getSelectedItem(), (Joueur) listej2.getSelectedItem(), arbitreInt, c, new Score(0, 0)));
+                    winMere.actuMatch();
                     this.dispose();
         } catch (SQLException ex) {
             Logger.getLogger(AjouterMatch.class.getName()).log(Level.SEVERE, null, ex);

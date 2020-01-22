@@ -45,7 +45,7 @@ public class CalendarView extends javax.swing.JPanel {
         RefreshDate();
     }
 
-    private void RefreshDate() throws SQLException{
+    public void RefreshDate() throws SQLException{
         //On vide le panel
         panelJours.removeAll();
         
