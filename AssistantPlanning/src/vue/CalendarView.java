@@ -23,10 +23,12 @@ import java.util.logging.Logger;
  */
 public class CalendarView extends javax.swing.JPanel {
 
+    private boolean modifiable;
     /**
      * Creates new form JourCalendar
      */
-    public CalendarView() throws SQLException {
+    public CalendarView(boolean modif) throws SQLException {
+        modifiable = modif;
         initComponents();
         GregorianCalendar cal = new GregorianCalendar(); //Create calendar
         //Integer realDay = cal.get(GregorianCalendar.DAY_OF_MONTH); //Get day
@@ -60,7 +62,7 @@ public class CalendarView extends javax.swing.JPanel {
         Integer totalHeight = 0;       
         for(int i = 0; i < maxJoursMois; i++){
             
-            JourCalendar jc = new JourCalendar(i + 1, joursSemaine[firstDay], ListMatchsMois.get(i), this);
+            JourCalendar jc = new JourCalendar(i + 1, joursSemaine[firstDay], ListMatchsMois.get(i), this, modifiable);
             panelJours.add(jc);
             
             totalHeight += 82;

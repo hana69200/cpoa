@@ -49,10 +49,14 @@ public class Modification extends javax.swing.JFrame {
         resultat = new javax.swing.JButton();
         match = new javax.swing.JButton();
         reserver = new javax.swing.JButton();
-        try {
-            calendarView1 = new vue.CalendarView();
-        } catch (java.sql.SQLException e1) {
-            e1.printStackTrace();
+        try
+        {
+            calendarView1 = calendarView1 = new vue.CalendarView(true);
+            ;
+        } catch (SQLException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -133,7 +137,7 @@ public class Modification extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1000, 800));
+        setPreferredSize(new java.awt.Dimension(1000, 860));
 
         header.setBackground(new java.awt.Color(255, 255, 255));
         header.setMinimumSize(new java.awt.Dimension(1000, 800));

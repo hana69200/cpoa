@@ -21,6 +21,7 @@ import javax.swing.SwingConstants;
  */
 public class JourCalendar extends javax.swing.JPanel {
 
+    private boolean modifiable;
     private CalendarView winMere;
     public void actuMatch()
     {
@@ -40,7 +41,8 @@ public class JourCalendar extends javax.swing.JPanel {
      * @param jourSemaine
      * @param listMatch
      */
-    public JourCalendar(Integer jour, String jourSemaine, ArrayList<Match> listMatch, CalendarView win) {
+    public JourCalendar(Integer jour, String jourSemaine, ArrayList<Match> listMatch, CalendarView win, boolean modif) {
+        modifiable = modif;
         winMere = win;
         initComponents();
         if(jour < 10){
@@ -88,11 +90,14 @@ public class JourCalendar extends javax.swing.JPanel {
         btn.setSize(150, 60);
         btn.setPreferredSize(new Dimension(150, 60));
         
+        if (modifiable)
+        {
         btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 modifActionPerformed(evt, m);
             }
         });
+        }
         panelMatch.add(btn);
     }
     /**

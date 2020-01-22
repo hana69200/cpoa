@@ -36,17 +36,17 @@ public class Main extends javax.swing.JFrame {
         connexion = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         try
-		{
-			calendarView1 = new vue.CalendarView();
-		} catch (SQLException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        {
+            calendarView1 = calendarView1 = new vue.CalendarView(false);
+            ;
+        } catch (SQLException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
-        setPreferredSize(new java.awt.Dimension(1000, 800));
         setResizable(false);
 
         header.setBackground(new java.awt.Color(255, 255, 255));
