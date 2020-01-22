@@ -14,7 +14,7 @@ if(isset($_GET['id'])){
 	$crm = $crmDAO -> getById(htmlspecialchars($_GET['id']));
 
 	}
-
+// si les champs courrier, appelTel, fax et action existent alors on les stockent dans une variable
 if (isset($_POST['Courrier']) && isset($_POST['AppelTel']) && isset($_POST['Fax']) && isset($_POST['Action'])) {
 	
     $courrier = htmlspecialchars($_POST['Courrier']);
@@ -23,6 +23,7 @@ if (isset($_POST['Courrier']) && isset($_POST['AppelTel']) && isset($_POST['Fax'
 	$action = htmlspecialchars($_POST['Action']);
 	
 	$crmDAO = new CrmDAO();
+	//grace a la methode modifierCRM on peut interagir avec la bd et update la table CRM selon l'id recuperer
 	$crmID = $crmDAO -> modifierCRM($courrier,$appelTel,$fax,$action);
 	header('Refresh:0; url=index.php?page=echangeCRM2&id='.$crm->getCrmID());
 }
